@@ -1,0 +1,28 @@
+{% extends 'base_users.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sing up</title>
+</head>
+<body>
+    {% block content %}
+    <main>
+        <div class="frame">
+            <div class="sign_up">
+                <h1 class="sign_up__title">Sign Up</h1>
+                <form method="POST" class="sign_up__form">
+                    {% csrf_token %}
+                    {{error}}
+                    {{form}}
+                    <input type="submit" value="Sing up" class="sign_up__button">
+                </form>
+            </div>
+            <img src="./Sources/Images/" alt="soul_logotype" class="logotype logotype--sign_up">
+        </div>
+ 
+    </main>
+    {% endblock %}
+</body>
+</html>

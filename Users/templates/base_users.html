@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/styles/styles.css' %}">
+    <title></title>
+</head>
+<body>
+    <header>
+        <nav class = "main_nav"> 
+            {% if user.is_authenticated %}
+            <li class="main_nav__item item--log"><a class="item__link link--log" href="{% url 'log_out' %}">Log Out</a></li>
+            <li class="main_nav__item item--subject"><a class="item__link" href="{% url 'subjects' %}">Subjects</a></li>
+            <li class="main_nav__item item--task"><a class="item__link" href="{% url 'tasks' %}">Tasks</a></li>
+            <li class="main_nav__item item--index"><a class="item__link" href="{% url 'home' %}">Home</a></li>
+            {% else %}
+            <li class="main_nav__item item--index"><a class="item__link" href="{% url 'welcome' %}">Welcome</a></li>
+            <li class="main_nav__item item--sign_up"><a class="item__link" href="{% url 'sign_up' %}">Sign Up</a></li>
+            <li class="main_nav__item item--log"><a class="item__link link--log" href="{% url 'log_in' %}">Log in</a></li>
+            {% endif %}
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

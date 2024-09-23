@@ -1,0 +1,64 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static '/styles/styles.css'%}">
+    <title>LOG INVENTORY</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.png'%}" type="image/png">
+    <meta name="description" content="Página principal del software contable LOG INVENTORY">
+    <meta name="keywords" content="inventario,instituciones,software,online">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="index, follow">
+</head>
+<body>
+    <script src="script.js"></script>
+    <header class="header">
+        <div class="header__logo-container">
+            <img class="header__logo" src="{%static '/images/LogoType.png'%}" alt="LOG INVENTORY">
+        </div>
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                <li class="header__nav-item"><a href="#inicio">Inicio</a></li>
+                <li class="header__nav-item"><a href="#info">Sobre nosotros</a></li>
+                <li class="header__nav-item"><a href="#contact">Contactanos</a></li>
+                <li class="header__nav-item"><a href="{% url 'log_in' %}">¡Empieza!</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="inicio">
+        <div class="main__overlay"></div>
+        <h1>¿Que es LOG INVENTORY?</h1>
+        <p><strong>LOG INVENTORY</strong> es un software web simple y accesible que permite llevar el inventario de instituciones educativas.</p>
+        <ul class="main__list">
+            <li class="main__list-item"><h3>- Manejo simple del stock:</h3>
+                <p>Modifica intuitivamente el número de existencia de los objetos.</p>
+            </li>
+            <li class="main__list-item"><h3>- Informes de cambios e historial:</h3>
+                <p>Obten informes en forma de tablas descargables con la información de cambios y fechas.</p>
+            </li>
+            <li class="main__list-item"><h3>- Personalización de objetos e interfaz:</h3>
+                <p>Añade imagenes y descripciones a tus objetos, y cambio los colorez de tu área de trabajo.</p>
+            </li>
+        </ul>
+    </main>
+    <div class="division"></div>
+    <aside>
+        <section id="info" class="info">
+            <h2>Sobre nosotros</h2>
+            <p>Somos un emprendimiento conformado por estudiantes de grado décimo de la I.E. GABO en Cartago valle del Cauca que pretendemos ayudar a nuestra y otras instituciones con sus problemas de accesibilidad a softwares para inventario.</p>
+        </section>
+        <section id="contact" class="contact">
+            <h2>Contactanos</h2>
+            <ul class="contact__list">
+                <li class="contact__list-item">email: <a class="email" href="mailto:correo@gmail.com">coreo@gmail.com</a></li>
+                <li class="contact__list-item">cel: <a href="tel:123456789">123456789</a></li>
+            </ul>
+        </section>
+    </aside>
+    <footer>
+        <p>¡Toma el control de tu inventario con LOG INVENTORY!</p>
+    </footer>
+</body>
+</html>

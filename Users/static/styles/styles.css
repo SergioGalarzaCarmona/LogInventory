@@ -1,0 +1,182 @@
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "Montserrat";
+    background-color: #fff;
+    color: #101632dd;
+    overflow-x: hidden;
+}
+
+body, div, ul, nav, header, footer, a, li, label {
+    margin: 0;
+    padding: 0;
+}
+
+/*---HEADER SECTION---*/
+
+.header {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    container-type: inline-size;
+    container-name: header;
+    text-align: center;
+    font-size: 20px;
+    z-index: 3;
+}
+
+.header__logo-container {
+    display: flex;
+    justify-self: start;
+    height: 12vh;
+    width: 16%;
+}
+
+.header__logo {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.header__nav {
+    height: 12vh;
+    width: 90%;
+}
+
+.header__nav-list {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header__nav-item {
+    padding: 4px;
+    font-size: 1.8rem;
+    color: #48e;
+    transition: background-color .3s, border-radius .3s, color .3s;
+}
+
+.header__nav-item:hover {
+    background-color: #48e;
+    border-radius: 16px;
+    color: #fff;
+}
+
+.header__nav-item > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/*MAIN SECTION*/
+
+main {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    background-image: url(../images/manager-of-warehouse-check-inventory-with-laptop-w-2021-08-29-22-34-00-utc.jpg);
+    background-size: cover;
+    color: #fff;
+}
+
+.main__overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: #0007;
+    position: absolute;
+    z-index: 1;
+}
+
+
+main > h1, main > p, .main__list-item {
+    position: relative;
+    z-index: 2;
+}
+
+
+h1 {
+    margin-top: 0;
+    font-size: 2.8rem;
+    position: relative;
+    top: 50px;
+}
+
+main > p {
+    position: relative;
+    top: 80px;
+    font-size: 1.4rem;
+}
+
+.main__list {
+    width: 90%;
+    text-align: start;
+    position: relative;
+    top: 40%;
+    list-style: none;
+    left: 10%;
+}
+
+.main__list-item {
+    color: inherit;
+}
+
+/*---DIVISION---*/
+
+.division {
+    height: 25vh;
+    background: linear-gradient(#0006, #fff);
+}
+
+/*---ASIDE---*/
+
+aside {
+    width: 80%;
+    margin: auto;
+}
+
+h2 {
+    font-size: 2.2rem;
+}
+
+.contact {
+    margin-top: 10vh;
+}
+
+.contact__list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20%;
+}
+
+.contact__list-item {
+    font-size: 1.2rem;
+}
+
+.contact__list-item a {
+    text-decoration: none;
+}
+
+
+/*FOOTER SECTION*/
+
+footer {
+    margin-top: 10%;
+    padding: 60px;
+    text-align: center;
+    background-color: #18233f;
+    color: #fffd;
+    font-size: 22px;
+}
