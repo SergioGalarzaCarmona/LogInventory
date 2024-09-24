@@ -15,6 +15,10 @@ body, div, ul, nav, header, footer, a, li, label {
     padding: 0;
 }
 
+h1, .contact, .info {
+    scroll-margin-top: 12vh;
+}
+
 /*---HEADER SECTION---*/
 
 .header {
@@ -30,6 +34,14 @@ body, div, ul, nav, header, footer, a, li, label {
     text-align: center;
     font-size: 20px;
     z-index: 3;
+}
+
+.header__checkbox {
+    display: none;
+}
+
+.header__open-nav-button {
+    display: none;
 }
 
 .header__logo-container {
@@ -80,13 +92,62 @@ body, div, ul, nav, header, footer, a, li, label {
 }
 
 
-/*MAIN SECTION*/
+/*HEADER QUERIES*/
+
+@container header (max-width: 600px) {
+    .header__checkbox {
+        display: block;
+        opacity: 0;
+    }
+    
+    .header__nav {
+        display: none;
+    }
+
+    .header__open-nav-button {
+        display: block;
+        color: #48e;
+        font-size: 3rem;
+        font-weight: 600;
+        position: absolute;
+        right: 10px;
+        z-index: 6;
+    }
+
+    .header__logo-container {
+        height: 6vh;
+    }
+
+    .header__checkbox:checked ~ .header__nav {
+        display: flex;
+        z-index: 5;
+        background-color: #fff;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        margin: auto;
+    }
+
+    .header__checkbox:checked ~ .header__nav > .header__nav-list {
+        flex-direction: column;
+    }
+
+    h1, .contact, .info {
+        scroll-margin-top: 6vh;
+    }
+}
+
+
+/*---MAIN SECTION---*/
 
 main {
+    container-type: inline-size;
+    container-name: main;
     width: 100vw;
     height: 100vh;
     text-align: center;
-    background-image: url(../images/manager-of-warehouse-check-inventory-with-laptop-w-2021-08-29-22-34-00-utc.jpg);
+    background-image: url(../images/manager-of-warehouse-check-inventory-with-laptop-w-2021-08-29-22-34-00-utc.webp);
     background-size: cover;
     color: #fff;
 }
@@ -113,6 +174,10 @@ h1 {
     top: 50px;
 }
 
+.main__list-item h2 {
+    font-size: 1.5rem;
+}
+
 main > p {
     position: relative;
     top: 80px;
@@ -126,10 +191,41 @@ main > p {
     top: 40%;
     list-style: none;
     left: 10%;
+    text-align: justify;
 }
 
 .main__list-item {
     color: inherit;
+}
+
+
+/*---MAIN SECTION QUERIES---*/
+
+@container main (max-width: 750px) {
+    
+    h1 {
+        top: 0;
+        margin-top: 10px;
+    }
+    
+    main > p {
+        top: 0;
+        margin: 0 10px;
+        font-size: 1.2rem;
+    }
+
+    .main__list {
+        width: 90vw;
+        left: 0;
+        top: 0;
+        margin: 0 10px;
+        margin-top: 15vh;
+    }
+
+    .main__list-item h2 {
+        font-size: 1.2rem;
+    }
+
 }
 
 /*---DIVISION---*/
