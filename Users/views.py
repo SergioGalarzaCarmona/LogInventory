@@ -6,7 +6,7 @@ from django.contrib.auth import login,logout,authenticate
 # Create your views here.
 def sign_up(request):
     if request.method == 'GET':
-        return render(request,'sing_up.html',{
+        return render(request,'sign_up.html',{
         'form' : UserCreationForm
     })
     else:
@@ -17,12 +17,12 @@ def sign_up(request):
                 login(request,user)
                 return redirect('welcome')
             except IntegrityError:
-                return render(request,'sing_up.html',{
+                return render(request,'sign_up.html',{
                 'form' : UserCreationForm,
                 'error' : "User already exists"
                 })
         else:
-            return render(request,'sing_up.html',{
+            return render(request,'sign_up.html',{
                 'form' : UserCreationForm,
                 'error' : "Password don't match"
                 })
