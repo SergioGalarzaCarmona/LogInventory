@@ -1,15 +1,22 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sing up</title>
+    <link rel="stylesheet" href="{%static '/styles/signUpStyles.css'%}">
+    <title>Crear cuenta</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="description" content="Crear cuenta en LOG INVENTORY">
+    <meta name="keywords" content="LOG INVENTORY,cuenta,crear">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="index, follow">
 </head>
 <body>
     <main>
         <div class="frame">
             <div class="sign_up">
-                <h1 class="sign_up__title">Sign Up</h1>
+                <h1 class="sign_up__title">Registrate!</h1>
                 <form method="POST" class="sign_up__form">
                     {% csrf_token %}
                     {{error}}
@@ -17,9 +24,7 @@
                     <input type="submit" value="Sing up" class="sign_up__button">
                 </form>
             </div>
-            <img src="./Sources/Images/" alt="soul_logotype" class="logotype logotype--sign_up">
         </div>
- 
     </main>
 </body>
 </html>
