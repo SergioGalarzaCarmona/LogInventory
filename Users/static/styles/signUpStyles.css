@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Montserrat";
+    background-color: #e2eaff;
+    color: #101632dd;
+}
+
+body, div, ul, li, label {
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    height: 100vh;
+    width: 100%;
+}
+
+.frame {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+.sign_up {
+    width: 45vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    container-name: form;
+    container-type: inline-size;
+    font-size: 16px;
+    border: none;
+    background-image: radial-gradient(#18233f44, #18233f11);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 40px #0006;
+}
+
+.sign_up__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+label {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+ul {
+    list-style:decimal;
+}
+
+input {
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+    display: block;
+    width: 100%;
+    padding: 7px 6px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px #0003;
+}
+
+input[type="submit"] {
+    margin: none;
+    background-color: #48e;
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    width: 100%;
+    
+}
+
+#id_password1_helptext {
+    display: none;
+}
+
+#id_username_helptext {
+    display: none;
+}
