@@ -1,22 +1,29 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static '/styles/logInStyles.css'%}">
     <title>Log In</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="description" content="Página inicio de sesión LOG INVENTORY">
+    <meta name="keywords" content="iniciar sesión LOG INVENTORY,LOG INVENTORY,cuenta LOG INVENTORY">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="index, follow">
 </head>
 <body>
     <div class="frame">
+        <h1>Iniciar sesión</h1>
         <div class="log_in">
-            <h1 class="log_in__title">Log in</h1>
             <form class= "log_in__form" method="POST">
                 {% csrf_token %}
                 {{ error }}
                 {{ form }}
                 <input type="submit" value="Log in" class="log_in__input input--button">
+                <div class="sign_up__link">¿No tienes una cuenta? <a href="#">Crea una!</a></div>
             </form>
         </div>
-        <img src="./Sources/Images/" alt="soul_logotype" class="logotype logotype--log_in">
     </div>
 </body>
 </html>
