@@ -24,6 +24,8 @@ main {
     width: 100%;
     display: grid;
     place-content: center;
+    container-type: inline-size;
+    container-name: frame;
 }
 
 h1 {
@@ -95,3 +97,18 @@ input[type="submit"] {
 #id_username_helptext {
     display: none;
 }
+
+
+/*---QUERIES---*/
+
+@CONTAINER frame (max-width: 600px) {
+
+    .sign_up {
+        width: 90vw;
+    }
+
+    #id_password2_helptext {
+        display: none;
+    }
+}
+
