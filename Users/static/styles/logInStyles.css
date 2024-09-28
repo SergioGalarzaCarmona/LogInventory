@@ -91,11 +91,40 @@ div a {
 div a:visited {
     color: #0000FF;
 }
+.home__link> div {
+    position: absolute;
+    left: 60px;
+    top: 40px;
+    font-size: .9rem;
+    color: #000;
+}
+
+.home__link-img {
+    height: 50px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
 
 /*---QUERIES---*/
 
 @CONTAINER frame (max-width: 1024px) {
     .log_in {
         width: 90vw;
+    }
+}
+
+
+@CONTAINER frame (max-width: 450px) {
+    .home__link> div {
+        position: absolute;
+        left: 50px;
+        top: 30px;
+        font-size: .9rem;
+        color: #000;
+}
+
+    .home__link-img {
+        height: 40px;
     }
 }

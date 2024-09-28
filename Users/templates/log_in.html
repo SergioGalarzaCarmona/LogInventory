@@ -13,7 +13,13 @@
     <meta name="robots" content="index, follow">
 </head>
 <body>
-    <div class="frame">
+    <div class="frame"> 
+        <div class="home__link-container">
+            <a href="{% url 'welcome' %}" class="home__link" id="link">
+                <img src="{%static '/images/casa.webp'%}" alt="Home" class="home__link-img">
+                <div>Página principal</div>
+            </a>
+        </div>
         <h1>Iniciar sesión</h1>
         <div class="log_in">
             <form class= "log_in__form" method="POST">
