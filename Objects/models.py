@@ -7,6 +7,7 @@ class Objects(models.Model):
     object_id = models.IntegerField(primary_key=True,editable=False,unique=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50,unique=True,error_messages={'unique' : 'The name already exists'})
+    show_object = models.BooleanField(default=True)
     stock = models.IntegerField(null=False,blank=False)
     last_change = models.DateTimeField(max_length=50)
     description = models.TextField(max_length=500)
