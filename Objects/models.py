@@ -18,7 +18,7 @@ class Type_Transaction(models.Model):
 
 class Transactions(models.Model):
     transaction_id = models.IntegerField(primary_key=True,editable=False,unique=True)
-    object_id = models.ForeignKey(Objects, editable=False)
+    object_id = models.ForeignKey(Objects,on_delete=models.PROTECT,editable=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     type_transaction = models.ForeignKey(Type_Transaction,on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True,editable=False)
