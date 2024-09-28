@@ -7,5 +7,17 @@
 </head>
 <body>
     <h1>Home</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{create_or_modifie_form}}
+    </form>
+    <form method="POST">
+        {% csrf_token %}
+        {{untrack_object_form}}
+    </form>
+    <form method="POST">
+        {% csrf_token %}
+        {{reverse_transaction_form}}
+    </form>
 </body>
 </html>
