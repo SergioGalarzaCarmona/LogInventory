@@ -95,6 +95,29 @@ input[type="submit"] {
     display: none;
 }
 
+.home__link> div {
+    position: absolute;
+    left: 60px;
+    top: 40px;
+    font-size: .9rem;
+    color: #000;
+}
+
+.home__link-img {
+    height: 50px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+div a {
+    text-decoration: none;
+    color: #0000FF;
+}
+
+div a:visited {
+    color: #0000FF;
+}
 
 /*---QUERIES---*/
 
@@ -109,3 +132,16 @@ input[type="submit"] {
     }
 }
 
+@CONTAINER frame (max-width: 450px) {    
+    .home__link> div {
+        position: absolute;
+        left: 50px;
+        top: 30px;
+        font-size: .9rem;
+        color: #000;
+}
+
+    .home__link-img {
+        height: 40px;
+    }
+}
