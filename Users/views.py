@@ -42,11 +42,11 @@ def log_in(request):
         })
         else:
             login(request,user)
-            return redirect('home')
+            return redirect('main')
 
 def log_out(request):
     logout(request)
-    return redirect('welcome')
+    return redirect('home')
     
-def welcome(request):
-    return render(request,'welcome.html')
+def home(request):
+    return render(request,'home.html')
