@@ -8,13 +8,19 @@
     <title>Crear cuenta</title>
     <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
     <meta name="description" content="Crear cuenta en LOG INVENTORY">
-    <meta name="keywords" content="LOG INVENTORY,cuenta,crear">
+    <meta name="keywords" content="LOG INVENTORY,cuenta LOG INVENTORY,crear cuenta LOG INVENTORY">
     <meta name="author" content="LOG INVENTORY">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow"> 
 </head>
 <body>
     <main>
         <div class="frame">
+            <div class="home__link-container">
+                <a href="{% url 'home' %}" class="home__link" id="link">
+                    <img src="{%static '/images/casa.webp'%}" alt="Home" class="home__link-img">
+                    <div>Página principal</div>
+                </a>
+            </div>
             <h1>Registrate!</h1>
             <div class="sign_up">
                 <form method="POST" class="sign_up__form">
@@ -22,6 +28,7 @@
                     {{error}}
                     {{form}}
                     <input type="submit" value="Sign up" class="sign_up__button">
+                    <div class="sign_up__link">¿Ya tienes una cuenta? <a href="{% url 'log_in' %}">Inicia sesión!</a></div>
                 </form>
             </div>
         </div>

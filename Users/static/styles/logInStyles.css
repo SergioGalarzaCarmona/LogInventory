@@ -3,6 +3,7 @@
 }
 
 body{
+    height: 100vh;
     font-family: "Montserrat";
     background-color: #e2eaff;
     color: #101632dd;
@@ -12,7 +13,6 @@ body, div, ul, li, label {
     margin: 0;
     padding: 0;
 }
-
 
 main {
     height: 100vh;
@@ -30,13 +30,13 @@ main {
 
 h1 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 3.6rem;
     margin-top: 0;
 }
 
-.sign_up {
+.log_in {
     width: 45vw;
-    height: 70vh;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,8 +50,8 @@ h1 {
     box-shadow: 0px 0px 40px #0006;
 }
 
-.sign_up__form {
-    width: 100%;
+.log_in__form {
+    width: 85%;
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -60,10 +60,6 @@ h1 {
 label {
     font-size: 1.5rem;
     font-weight: bold;
-}
-
-ul {
-    list-style:decimal;
 }
 
 input {
@@ -84,17 +80,17 @@ input[type="submit"] {
     color: #fff;
     padding: 4px;
     border-radius: 4px;
-    width: 100%;
+    width: 100%;   
 }
 
-#id_password1_helptext {
-    display: none;
+div a {
+    text-decoration: none;
+    color: #0000FF;
 }
 
-#id_username_helptext {
-    display: none;
+div a:visited {
+    color: #0000FF;
 }
-
 .home__link> div {
     position: absolute;
     left: 60px;
@@ -110,29 +106,16 @@ input[type="submit"] {
     top: 10px;
 }
 
-div a {
-    text-decoration: none;
-    color: #0000FF;
-}
-
-div a:visited {
-    color: #0000FF;
-}
-
 /*---QUERIES---*/
 
 @CONTAINER frame (max-width: 1024px) {
-
-    .sign_up {
+    .log_in {
         width: 90vw;
-    }
-
-    #id_password2_helptext {
-        display: none;
     }
 }
 
-@CONTAINER frame (max-width: 450px) {    
+
+@CONTAINER frame (max-width: 450px) {
     .home__link> div {
         position: absolute;
         left: 50px;
