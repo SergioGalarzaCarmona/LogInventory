@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from Objects.models import Objects
 
 class Create_or_Modifie_Object(forms.Form):
     name = forms.CharField(label='Nombre',max_length=50,widget=forms.TextInput({'class' : 'object-name'}))
