@@ -18,6 +18,8 @@ body, div, ul, nav, header, footer, a, li, label {
 /*---HEADER---*/
 
 .header {
+    height: 12vh;
+    width: 100vw;
     display: flex;
     flex-direction: row;
 }
@@ -36,6 +38,20 @@ h1 {
     border-radius: 0px 8px 8px 0px;
 }
 
+.log_out {
+    margin-left: 65vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: #48e;
+}
+
+.log_out__image {
+    height: 10vh;
+    margin-left: 1vw;
+}
+
 /*---MAIN---*/
 
 .space-work {
@@ -51,6 +67,7 @@ h1 {
 
 .space-work__create {
     height: 8vh;
+    margin: 20px 30px;
 }
 
 .create-button {
