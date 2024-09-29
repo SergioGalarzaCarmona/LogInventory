@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "Montserrat";
+    background-color: #fff;
+    color: #070b1add;
+    height: 100vh;
+}
+
+body, div, ul, nav, header, footer, a, li, label {
+    margin: 0;
+    padding: 0;
+}
+
+/*---HEADER---*/
+
+.header {
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+    margin: 20px;
+}
+
+.header__logo-container {
+    display: flex;
+    height: 12vh;
+}
+
+.header__logo {
+    height: 12vh;
+    border-radius: 0px 8px 8px 0px;
+}
+
+/*---MAIN---*/
+
+.space-work {
+    height: 88vh;
+    width: 100%;
+    background-color: #ecdddd;
+    border: solid 2px #000;
+    border-left: none;
+    border-right: none;
+    position: relative;
+    z-index: 1;
+}
+
+.space-work__create {
+    height: 8vh;
+}
+
+.create-button {
+    display: none;
+}
+
+.más {
+    height: 8vh;
+}
+
+/*---FORMS---*/
+
+.space-work__create-form {
+    display: none;
+}
+
+.create-button:checked ~ .space-work__create-form {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 50vw;
+    height: 60vh;
+    left: 25vw;
+}
+
+.create_or_modifie_form {
+
+}
+
+
+
