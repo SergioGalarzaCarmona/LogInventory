@@ -28,15 +28,30 @@
                 <form class="create_or_modifie_form" method="POST"> 
                     {% csrf_token %}
                     {{create_or_modifie_form}}
+                    <input type="submit" value="Crear objeto">
                 </form>
             </div>
         </div> 
+        <div class="object">
+            {% for object in objects %}
+            {% if object.show_object == 1 %}
+            <h3>
+                {{object.name}}
+            </h3>
+            <p>
+               {{object.stock}} 
+            </p>
+            <p>
+                {{object.description}}
+            </p>
+            <img src="{% static '/images/descarga.png' %}" alt="object_image">
+            {% endif %}
+            
+            
+
+            {% endfor %}
+        </div>
     </main>
+    
 </body>
 </html>
-
-
-<form method="POST" class="untrack_object_form">
-    {% csrf_token %}
-    {{untrack_object_form}}
-</form>
