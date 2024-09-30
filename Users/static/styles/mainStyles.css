@@ -55,6 +55,9 @@ h1 {
 /*---MAIN---*/
 
 .space-work {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     height: 88vh;
     width: 100%;
     background-color: #ecdddd;
@@ -62,12 +65,12 @@ h1 {
     border-left: none;
     border-right: none;
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 .space-work__create {
     height: 8vh;
-    margin: 20px 30px;
+    margin: 11vh 30px;
 }
 
 .create-button {
@@ -76,6 +79,39 @@ h1 {
 
 .más {
     height: 8vh;
+}
+
+.object {
+    position: relative;
+    direction: rtl;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 15vw;
+    max-width: 20vw;
+    height: 25vh;
+    background-color: #ebe6e6;
+    padding: 5px;
+    border: #000 solid 1px;
+    margin: 30px;
+    border-radius: 5px;
+}
+
+.overlay {
+    margin: -5px;
+    position: absolute;
+    z-index: 15;
+    width: 100%;
+    height: 100%;
+    background-color: #0006;
+}
+
+h3, p, img {
+    position: relative;
+    z-index: 20;
+}
+
+h3, p {
+    color: #fff;
 }
 
 /*---FORMS---*/
@@ -87,7 +123,7 @@ h1 {
 .create-button:checked ~ .space-work__create-form {
     display: block;
     position: absolute;
-    z-index: 2;
+    z-index: 30;
     padding: 30px;
     border-radius: 5px;
     background-color: #fff;

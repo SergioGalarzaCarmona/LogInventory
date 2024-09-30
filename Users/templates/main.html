@@ -16,7 +16,7 @@
         <div class="header__logo-container"></div>
             <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
         </div>
-        <h1>Home</h1>
+        <h1>/(*_*)\</h1>
         <a href="{%url 'log_out'%}" class="log_out">
             <div>Cerrar sesión</div>
             <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
@@ -36,9 +36,10 @@
                 </form>
             </div>
         </div> 
+        {% for object in objects %}
+        {% if object.show_object == 1 %}
         <div class="object">
-            {% for object in objects %}
-            {% if object.show_object == 1 %}
+            <div class="overlay"></div>
             <h3>
                 {{object.name}}
             </h3>
@@ -49,12 +50,10 @@
                 {{object.description}}
             </p>
             <img src="{% static '/images/descarga.png' %}" alt="object_image">
-            {% endif %}
             
-            
-
-            {% endfor %}
         </div>
+        {% endif %}    
+        {% endfor %}
     </main>
     
 </body>
