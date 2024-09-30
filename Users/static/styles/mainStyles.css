@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "Montserrat";
+    background-color: #fff;
+    color: #070b1add;
+    height: 100vh;
+}
+
+body, div, ul, nav, header, footer, a, li, label {
+    margin: 0;
+    padding: 0;
+}
+
+/*---HEADER---*/
+
+.header {
+    height: 12vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+    margin: 20px;
+}
+
+.header__logo-container {
+    display: flex;
+    height: 12vh;
+}
+
+.header__logo {
+    height: 12vh;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.log_out {
+    margin-left: 65vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: #48e;
+}
+
+.log_out__image {
+    height: 10vh;
+    margin-left: 1vw;
+}
+
+/*---MAIN---*/
+
+.space-work {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 88vh;
+    width: 100%;
+    background-color: #ecdddd;
+    border: solid 2px #000;
+    border-left: none;
+    border-right: none;
+    position: relative;
+    z-index: 10;
+}
+
+.space-work__create {
+    height: 8vh;
+    margin: 11vh 30px;
+}
+
+.create-button {
+    display: none;
+}
+
+.más {
+    height: 8vh;
+}
+
+.object {
+    position: relative;
+    direction: rtl;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 15vw;
+    max-width: 20vw;
+    height: 25vh;
+    background-color: #ebe6e6;
+    padding: 5px;
+    border: #000 solid 1px;
+    margin: 30px;
+    border-radius: 5px;
+}
+
+.overlay {
+    margin: -5px;
+    position: absolute;
+    z-index: 15;
+    width: 100%;
+    height: 100%;
+    background-color: #0006;
+}
+
+h3, p, img {
+    position: relative;
+    z-index: 20;
+}
+
+h3, p {
+    color: #fff;
+}
+
+/*---FORMS---*/
+
+.space-work__create-form {
+    display: none;
+}
+
+.create-button:checked ~ .space-work__create-form {
+    display: block;
+    position: absolute;
+    z-index: 30;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 50vw;
+    height: 60vh;
+    left: 25vw;
+}
+
+.create_or_modifie_form {
+
+}
+
+
+

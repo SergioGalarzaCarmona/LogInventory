@@ -1,11 +1,60 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <link rel="stylesheet" href="{%static '/styles/mainStyles.css'%}">
+    <title>Espacio de trabajo</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="description" content="Espacio de trbajo LOG INVENTORY">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
-    <h1>Home</h1>
+    <header class="header">
+        <div class="header__logo-container"></div>
+            <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
+        </div>
+        <h1>/(*_*)\</h1>
+        <a href="{%url 'log_out'%}" class="log_out">
+            <div>Cerrar sesión</div>
+            <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
+        </a>
+    </header>
+    <main class="space-work">
+        <div class="space-work__create">
+            <input type="checkbox" class="create-button" id="create">
+            <label for="create">
+                <img src="../static/images/más.webp" class="más" alt="create">
+            </label>
+            <div class="space-work__create-form">
+                <form class="create_or_modifie_form" method="POST"> 
+                    {% csrf_token %}
+                    {{create_or_modifie_form}}
+                    <input type="submit" value="Crear objeto">
+                </form>
+            </div>
+        </div> 
+        {% for object in objects %}
+        {% if object.show_object == 1 %}
+        <div class="object">
+            <div class="overlay"></div>
+            <h3>
+                {{object.name}}
+            </h3>
+            <p>
+               {{object.stock}} 
+            </p>
+            <p>
+                {{object.description}}
+            </p>
+            <img src="{% static '/images/descarga.png' %}" alt="object_image">
+            
+        </div>
+        {% endif %}    
+        {% endfor %}
+    </main>
+    
 </body>
 </html>
