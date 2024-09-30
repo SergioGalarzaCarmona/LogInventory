@@ -11,7 +11,7 @@ class Objects(models.Model):
     stock = models.IntegerField(null=False,blank=False)
     last_change = models.DateTimeField(max_length=50,auto_now_add=True)
     description = models.TextField(max_length=500)
-    image = models.ImageField(upload_to='uploads/')
+    image = models.ImageField(blank=True,upload_to='object_images/',default='object_images/image.png')
 
 class Type_Transaction(models.Model):
     type_id = models.IntegerField(primary_key=True,editable=False,unique=True)
