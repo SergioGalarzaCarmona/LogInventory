@@ -29,8 +29,9 @@
                 <img src="../static/images/más.webp" class="más" alt="create">
             </label>
             <div class="space-work__create-form">
-                <form class="create_or_modifie_form" method="POST"> 
+                <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
                     {% csrf_token %}
+                    {{is_not_valid}}
                     {{create_or_modifie_form}}
                     <input type="submit" value="Crear objeto">
                 </form>
@@ -49,7 +50,9 @@
             <p>
                 {{object.description}}
             </p>
-            <img src="{% static '/images/descarga.png' %}" alt="object_image">
+            <img src="media/{{object.image}}" alt="object_image">
+            {% endif %}
+            
             
         </div>
         {% endif %}    

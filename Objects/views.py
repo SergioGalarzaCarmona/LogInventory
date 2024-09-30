@@ -5,13 +5,25 @@ from Objects.models import Objects,Transactions,Type_Transaction
 def main(request):
     if request.method == 'GET':
         object_instance = Objects.objects.filter(user_id = request.user)
-        print(object_instance)
         return render(request,'main.html',{
             'create_or_modifie_form' : ObjectForm ,
             'objects' : object_instance,
         })
     else: 
-        new_object = Objects.objects.create(user_id = request.user, name = request.POST['name'],stock = request.POST['stock'],description = request.POST['description'],image = request.POST['image'])
-        return render(request,'main.html',{
-            'create_or_modifie_form' : ObjectForm,
-        })
+        form = ObjectForm(request.POST,request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user_id = request.user
+            post.save()
+            object_instance = Objects.objects.filter(user_id = request.user)
+            return render(request,'main.html',{
+                'create_or_modifie_form' : ObjectForm,
+                'objects' : object_instance,
+            })
+        else:
+            object_instance = Objects.objects.filter(user_id = request.user)
+            return render(request,'main.html',{
+                'create_or_modifie_form' : ObjectForm,
+                'objects' : object_instance,          
+                'is_not_valid' : 'Los datos ingresados no son validos'
+            }) 
