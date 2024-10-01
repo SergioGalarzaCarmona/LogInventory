@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from Objects.forms import ObjectForm
-from Objects.models import Objects,Transactions,Type_Transaction
+from Objects.models import Objects
 # Create your views here.
 def main(request):
     if request.method == 'GET':
