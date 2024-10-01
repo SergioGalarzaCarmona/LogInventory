@@ -16,6 +16,24 @@
         <div class="header__logo-container"></div>
             <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
         </div>
+        <ul class="header__tools">
+            <li class="header__tools-create">
+                <div class="create">
+                    <input type="checkbox" class="create-button" id="create">
+                    <label for="create">
+                        <img src="../static/images/más.webp" class="más" alt="create">
+                    </label>
+                    <div class="create-form">
+                        <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
+                            {% csrf_token %}
+                            {{is_not_valid}}
+                            {{create_or_modifie_form}}
+                            <input type="submit" value="Crear objeto">
+                        </form>
+                    </div>
+                </div> 
+            </li>
+        </ul>
         <h1>/(*_*)\</h1>
         <a href="{%url 'log_out'%}" class="log_out">
             <div>Cerrar sesión</div>
@@ -23,39 +41,25 @@
         </a>
     </header>
     <main class="space-work">
-        <div class="space-work__create">
-            <input type="checkbox" class="create-button" id="create">
-            <label for="create">
-                <img src="../static/images/más.webp" class="más" alt="create">
-            </label>
-            <div class="space-work__create-form">
-                <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
-                    {% csrf_token %}
-                    {{is_not_valid}}
-                    {{create_or_modifie_form}}
-                    <input type="submit" value="Crear objeto">
-                </form>
-            </div>
-        </div> 
-        {% for object in objects %}
+        <section class="space-work__objects">
+            {% for object in objects %}
         {% if object.show_object == 1 %}
         <div class="object">
             <div class="overlay"></div>
             <h3>
                 {{object.name}}
             </h3>
-            <p>
-               {{object.stock}} 
+            <p class="stock">
+               <span>Cantidad:</span> {{object.stock}} 
             </p>
-            <p>
+            <p class="description">
                 {{object.description}}
             </p>
-            <img src="media/{{object.image}}" alt="object_image">
-            
-            
+            <img src="media/{{object.image}}" alt="object_image" class="object_image">
         </div>
         {% endif %}    
         {% endfor %}
+        </section>
     </main>
     
 </body>

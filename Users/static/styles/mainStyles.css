@@ -8,6 +8,7 @@ body{
     background-color: #fff;
     color: #070b1add;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 body, div, ul, nav, header, footer, a, li, label {
@@ -22,6 +23,7 @@ body, div, ul, nav, header, footer, a, li, label {
     width: 100vw;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 h1 {
@@ -38,8 +40,28 @@ h1 {
     border-radius: 0px 8px 8px 0px;
 }
 
+.header__tools-create {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    width: 12vh;
+}
+
+.create {
+    height: 8vh;
+}
+
+.create-button {
+    display: none;
+}
+
+.más {
+    height: 8vh;
+}
+
 .log_out {
-    margin-left: 65vw;
+    position: absolute;
+    right: 2vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -55,12 +77,11 @@ h1 {
 /*---MAIN---*/
 
 .space-work {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    height: 88vh;
+    display: grid;
+    place-content: center;
     width: 100%;
-    background-color: #ecdddd;
+    background-image: url("../images/escritorio.webp");
+    background-size: cover;
     border: solid 2px #000;
     border-left: none;
     border-right: none;
@@ -68,32 +89,27 @@ h1 {
     z-index: 10;
 }
 
-.space-work__create {
-    height: 8vh;
-    margin: 11vh 30px;
-}
-
-.create-button {
-    display: none;
-}
-
-.más {
-    height: 8vh;
+.space-work__objects {
+    margin: 5vh 0;
+    width: 85vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+    justify-content: space-evenly;
 }
 
 .object {
     position: relative;
     direction: rtl;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 15vw;
-    max-width: 20vw;
+    width: 26vw;
+    justify-items:end;
     height: 25vh;
     background-color: #ebe6e6;
     padding: 5px;
     border: #000 solid 1px;
-    margin: 30px;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .overlay {
@@ -114,13 +130,40 @@ h3, p {
     color: #fff;
 }
 
+h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+span {
+    font-size: 1.2rem;
+}
+
+.description {
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    bottom: 1vh;
+    border-top: #fff dotted 1px;
+}
+
+.object_image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 /*---FORMS---*/
 
-.space-work__create-form {
+.create-form {
     display: none;
 }
 
-.create-button:checked ~ .space-work__create-form {
+.create-button:checked ~ .create-form {
     display: block;
     position: absolute;
     z-index: 30;
