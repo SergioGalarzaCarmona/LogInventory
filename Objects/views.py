@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from Objects.forms import ObjectForm
-from Objects.models import Objects,Transactions,Type_Transaction
+from Objects.models import Objects
 # Create your views here.
 def main(request):
     if request.method == 'GET':
@@ -15,11 +15,7 @@ def main(request):
             post = form.save(commit=False)
             post.user_id = request.user
             post.save()
-            object_instance = Objects.objects.filter(user_id = request.user)
-            return render(request,'main.html',{
-                'create_or_modifie_form' : ObjectForm,
-                'objects' : object_instance,
-            })
+            return redirect('main')
         else:
             object_instance = Objects.objects.filter(user_id = request.user)
             return render(request,'main.html',{
@@ -27,3 +23,11 @@ def main(request):
                 'objects' : object_instance,          
                 'is_not_valid' : 'Los datos ingresados no son validos'
             }) 
+            
+            
+def object_instance(request,id):
+        object_instance = Objects.objects.get(object_id = id)
+        form = ObjectForm(instance=object_instance)
+        return render(request,'objects.html',{
+            'form' : form
+        })
