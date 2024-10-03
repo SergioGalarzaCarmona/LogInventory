@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View object</title>
+</head>
+<body>
+    <img src="media/{{object.image}}" alt="object_image" class="object_image">
+    <h1>{{object.name}}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+</html>
