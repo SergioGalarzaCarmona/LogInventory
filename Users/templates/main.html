@@ -44,21 +44,23 @@
         <section class="space-work__objects">
         {% for object in objects %}
         {% if object.show_object == 1 %}
-        <div class="object">
-            <div class="overlay"></div>
-            <h3>
-                <a href="{% url 'object' object.object_id %}">{{object.name}}</a>
-            </h3>
-            <p class="stock">
-               <span>Cantidad:</span> {{object.stock}} 
-            </p>
-            <p class="description">
-                {{object.description}}
-            </p>
-            <img src="media/{{object.image}}" alt="object_image" class="object_image">
-        </div>
-        {% endif %}    
-        {% endfor %}
+        <a class="modifie" href="{% url 'object' object.object_id %}">
+            <div class="object">
+                <div class="overlay"></div>
+                <h3>
+                    {{object.name}}
+                </h3>
+                <p class="stock">
+                   <span>Cantidad:</span> {{object.stock}} 
+                </p>
+                <p class="description">
+                    {{object.description}}
+                </p>
+                <img src="media/{{object.image}}" alt="object_image" class="object_image">
+            </div>
+            {% endif %}    
+            {% endfor %}
+        </a>
         </section>
     </main>
     
