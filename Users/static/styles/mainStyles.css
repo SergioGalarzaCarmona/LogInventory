@@ -74,6 +74,10 @@ h1 {
     margin-left: 1vw;
 }
 
+.log_out:hover {
+    filter: drop-shadow(4px 4px 6px #48e);
+}
+
 /*---MAIN---*/
 
 .space-work {
@@ -174,10 +178,3 @@ span {
     height: 60vh;
     left: 25vw;
 }
-
-.create_or_modifie_form {
-
-}
-
-
-
