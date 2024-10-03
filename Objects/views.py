@@ -23,3 +23,11 @@ def main(request):
                 'objects' : object_instance,          
                 'is_not_valid' : 'Los datos ingresados no son validos'
             }) 
+            
+            
+def object_instance(request,id):
+        object_instance = Objects.objects.get(object_id = id)
+        form = ObjectForm(instance=object_instance)
+        return render(request,'objects.html',{
+            'form' : form
+        })
