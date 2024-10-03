@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +7,13 @@
     <title>View object</title>
 </head>
 <body>
-    <h1>objects</h1>
+    <img src="{% static '/images/casa.webp' %}" alt="object_image" class="object_image">
+    <h1>{{object.name}}</h1>
     <form method="POST">
         {% csrf_token %}
         {{form}}
         <input type="submit" value="Actualizar">
     </form>
+    
 </body>
 </html>

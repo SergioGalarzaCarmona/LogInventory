@@ -28,9 +28,11 @@ def main(request):
 def object_instance(request,id):
     if request.method == 'GET':
         object_instance = Objects.objects.get(object_id = id)
+        print(object_instance)
         form = ModifieObject(instance=object_instance)
         return render(request,'objects.html',{
-            'form' : form
+            'form' : form,
+            'object' : object_instance
         })
     else:
         object_instance = Objects.objects.get(object_id = id)
