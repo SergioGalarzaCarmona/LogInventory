@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "Montserrat";
+    background-color: #fff;
+    color: #070b1add;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+body, div, ul, nav, header, footer, a, li, label {
+    margin: 0;
+    padding: 0;
+}
+
+/*---HEADER---*/
+
+.header {
+    height: 12vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+h1 {
+    margin: 20px;
+}
+
+.header__logo-container {
+    display: flex;
+    height: 12vh;
+}
+
+.header__logo {
+    height: 12vh;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.header__tools-create {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    width: 12vh;
+}
+
+.create {
+    height: 8vh;
+}
+
+.create-button {
+    display: none;
+}
+
+.más {
+    height: 8vh;
+    transition: filter .2s;
+}
+
+.más:hover {
+    filter: drop-shadow(0 0 6px #48e);
+}
+
+.log_out {
+    position: absolute;
+    right: 2vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: #48e;
+    transition: filter .2s;
+}
+
+.log_out__image {
+    height: 10vh;
+    margin-left: 1vw;
+}
+
+.log_out:hover {
+    filter: drop-shadow(4px 4px 6px #48e);
+}
+
+/*---MAIN---*/
+
+.space-work {
+    display: grid;
+    place-content: center;
+    width: 100%;
+    min-height: 88vh;
+    background-image: url("../images/escritorio.webp");
+    background-size: cover;
+    border: solid 2px #000;
+    border-left: none;
+    border-right: none;
+    position: relative;
+    z-index: 10;
+}
+
+.space-work__objects {
+    margin: 5vh 0;
+    width: 85vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+    justify-content: space-evenly;
+}
+
+.modifie {
+    text-decoration: none;
+}
+
+.object {
+    position: relative;
+    direction: rtl;
+    width: 26vw;
+    justify-items:end;
+    height: 25vh;
+    background-color: #ebe6e6;
+    padding: 5px;
+    border: #000 solid 1px;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: filter .2s;
+}
+
+.object:hover {
+    filter: brightness(1.3) contrast(1);
+}
+
+.overlay {
+    margin: -5px;
+    position: absolute;
+    z-index: 15;
+    width: 100%;
+    height: 100%;
+    background-color: #0006;
+}
+
+h3, p, img {
+    position: relative;
+    z-index: 20;
+}
+
+h3, p {
+    color: #fff;
+}
+
+h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+span {
+    font-size: 1.2rem;
+}
+
+.description {
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    bottom: 1vh;
+    border-top: #fff dotted 1px;
+}
+
+.object_image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/*---FORMS---*/
+
+.create-form {
+    display: none;
+}
+
+.create-button:checked ~ .create-form {
+    display: block;
+    position: absolute;
+    z-index: 30;
+    padding: 30px;
+    border: solid 1px #000;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 50vw;
+    height: 60vh;
+    left: 25vw;
+}
