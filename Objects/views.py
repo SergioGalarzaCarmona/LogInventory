@@ -26,8 +26,15 @@ def main(request):
             
             
 def object_instance(request,id):
+    if request.method == 'GET':
         object_instance = Objects.objects.get(object_id = id)
         form = ObjectForm(instance=object_instance)
         return render(request,'objects.html',{
             'form' : form
         })
+    else:
+        object_instance = Objects.objects.get(object_id = id)
+        form = ObjectForm(request.POST,instance=object_instance)
+        form.save()
+        return redirect('main')
+        
