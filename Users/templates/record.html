@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>a</title>
+    <title>Record</title>
 </head>
 <body>
     <header>
@@ -19,15 +19,23 @@
     {% for instance in record %}
     <div>
         <h2>Objeto: {{instance.object_id.name}}</h2>
-        {% if instance.type_transaction_id == 1 %}
+        {% if instance.object_id.show_object == 0 %}
+        <p>Tipo de transaction: Eliminacion de objeto</p>
+        {% elif instance.type_transaction_id == 1 %}
         <p>Tipo de transaction: Adición</p>
         {% elif instance.type_transaction_id == 2 %}
-        <p>Tipo de transaction: Eliminación</p>
+        <p>Tipo de transaction: Sustraccion</p>
         {% elif instance.type_transaction_id == 4 %}
         <p>Tipo de transaction: Remodelación de objeto</p>
         {% endif %}
         <p>Stock antes: {{instance.stock_before}}</p>
         <p>Stock después: {{instance.stock_after}}</p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="number" hidden name="transaction" value="{{instance.transaction_id}}">
+            <input type="number" hidden name=object value="{{instance.object_id.object_id}}">
+            <input type="submit" value="Retroceder cambios">
+        </form>
     </div> 
     {% endfor %}
 </body> 
