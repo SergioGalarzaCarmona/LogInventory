@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from Objects.forms import ObjectForm,ModifieObject
-from Objects.models import Objects
+from Objects.models import Objects,Transactions,Type_Transaction
 # Create your views here.
 def main(request):
     if request.method == 'GET':
@@ -35,7 +35,19 @@ def object_instance(request,id):
         })
     else:
         object_instance = Objects.objects.get(object_id = id)
+        stock_before = object_instance.stock
         form = ModifieObject(request.POST,instance=object_instance)
         form.save()
-        return redirect('main')
-        
+        if stock_before == int(request.POST['stock']):
+            type_instance = Type_Transaction.objects.get(type_id = 4)
+        elif stock_before < int(request.POST['stock']):
+            type_instance = Type_Transaction.objects.get(type_id = 1)
+        elif  stock_before > int(request.POST['stock']):
+            type_instance = Type_Transaction.objects.get(type_id = 2)
+        Transactions.objects.create(object_id = object_instance,user_id = request.user,type_transaction = type_instance,stock_before = stock_before,stock_after = request.POST['stock'])
+        return redirect('main') 
+def record(request):
+    transactions = Transactions.objects.filter(user_id = request.user)
+    return render(request,'record.html',{
+        'record' : transactions,
+    })
