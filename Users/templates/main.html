@@ -23,12 +23,12 @@
                     <label for="create">
                         <img src="../static/images/más.webp" class="más" alt="create">
                     </label> 
-                    <div class="create-form">
+                    <div class="create-form-container">
                         <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
                             {% csrf_token %}
                             {{is_not_valid}}
                             {{create_or_modifie_form}}
-                            <input type="submit" value="Crear objeto">
+                            <input type="submit" value="Crear objeto" class="submit">
                             <label for="create" class="close">x</label>
                         </form>
                     </div>
@@ -65,6 +65,6 @@
         </a>
         </section>
     </main>
-    
+    <script src="../static/scripts/mainScript.js"></script>
 </body>
 </html>
