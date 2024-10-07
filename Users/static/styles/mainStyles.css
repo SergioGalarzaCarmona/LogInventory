@@ -21,6 +21,10 @@ body, div, ul, nav, header, footer, a, li, label {
 .header {
     height: 12vh;
     width: 100vw;
+    background-color: #fff;
+    position: sticky;
+    top: 0px;
+    z-index: 50;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -62,6 +66,7 @@ h1 {
 
 .más:hover {
     filter: drop-shadow(0 0 6px #48e);
+    cursor: pointer;  
 }
 
 .log_out {
@@ -91,13 +96,17 @@ h1 {
     place-content: center;
     width: 100%;
     min-height: 88vh;
-    background-image: url("../images/escritorio.webp");
-    background-size: cover;
-    border: solid 2px #000;
-    border-left: none;
-    border-right: none;
     position: relative;
     z-index: 10;
+}
+
+.space-work__background {
+    height: 88vh;
+    width: 100%;
+    background-image: url("../images/escritorio.webp");
+    background-size: cover;
+    position: fixed;
+    z-index: 20;
 }
 
 .space-work__objects {
@@ -116,6 +125,7 @@ h1 {
 
 .object {
     position: relative;
+    z-index: 25;
     direction: rtl;
     width: 26vw;
     justify-items:end;
@@ -135,15 +145,15 @@ h1 {
 .overlay {
     margin: -5px;
     position: absolute;
-    z-index: 15;
+    z-index: 30;
     width: 100%;
     height: 100%;
     background-color: #0006;
 }
 
-h3, p, img {
+h3, p {
     position: relative;
-    z-index: 20;
+    z-index: 40;
 }
 
 h3, p {
@@ -171,7 +181,6 @@ span {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 10;
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -184,14 +193,70 @@ span {
 }
 
 .create-button:checked ~ .create-form {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     position: absolute;
-    z-index: 30;
+    z-index: 60;
     padding: 30px;
     border: solid 1px #000;
     border-radius: 5px;
     background-color: #fff;
+    background-image: radial-gradient(#18233f44, #18233f11);
     width: 50vw;
     height: 60vh;
     left: 25vw;
+    overflow: hidden;
+}
+
+input {
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+    display: block;
+    width: 100%;
+    padding: 7px 6px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px #0003;
+}
+
+input[type="submit"] {
+    margin: none;
+    background-color: #48e;
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    width: 100%;   
+}
+
+textarea {
+    resize: none;
+}
+
+.close {
+    position: absolute;
+    right: 8px;
+    top: -10px;
+    display: grid;                
+    place-content: center;
+    color: #fff;
+    background-color: rgb(250, 50, 50);
+    border: none;  
+    border-radius: 0 0 5px 0;
+    transform: rotate(90deg);
+    font-family: sans-serif;
+    padding: 5px 3.2px;              
+    font-size: 1.8rem;             
+    font-weight: bold;              
+    cursor: pointer;       
+    transition: color .2s, back-ground-color .2s, border .2s;                   
+}
+
+.close:hover {
+    color: rgb(250, 50, 50);
+    background-color: #fff;
+    border: #000 solid 1px;
+    border-top: none;
+    border-left: none;
 }
