@@ -24,13 +24,19 @@
         <ul class="header__tools">
             <li class="header__tools-create">
                 <div class="create">
+                    {% if show == True %}
+                    <input type="checkbox" class="create-button" id="create" checked>
+                    {% else %}
                     <input type="checkbox" class="create-button" id="create">
+                    {% endif %}
                     <label for="create">
                         <img src="../static/images/más.webp" class="más" alt="create">
                     </label> 
                     <div class="create-form">
                         <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
                             {% csrf_token %}
+                            {{name_invalid}}
+                            {{number_invalid}}
                             {{is_not_valid}}
                             {{create_or_modifie_form}}
                             <input type="submit" value="Crear objeto">
