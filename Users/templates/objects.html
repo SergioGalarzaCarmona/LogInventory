@@ -9,6 +9,8 @@
     <img src="media/{{object.image}}" alt="object_image" class="object_image">
     <h1>{{object.name}}</h1>
     <form method="POST">
+        {{change_invalid}}
+        {{message}}
         {% csrf_token %}
         {{form}}
         <input type="submit" value="Actualizar">
