@@ -1,19 +1,67 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View object</title>
+    <link rel="stylesheet" href="{%static '/styles/objectStyles.css'%}">
+    <title>Objetos</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="description" content="Objetos LOG INVENTORY">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
-    <img src="media/{{object.image}}" alt="object_image" class="object_image">
-    <h1>{{object.name}}</h1>
-    <form method="POST">
-        {{change_invalid}}
-        {{message}}
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Actualizar">
-    </form>
+    <header class="header">
+        <div class="header__logo-container"></div>
+            <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
+        </div>
+        <div>
+            <ul>
+                <li><a href="{% url 'record' %}">Historial</a></li>
+            </ul>
+        </div>
+        <ul class="header__tools">
+            <li class="header__tools-create">
+                <div class="create">
+                    {% if show == True %}
+                    <input type="checkbox" class="create-button" id="create" checked>
+                    {% else %}
+                    <input type="checkbox" class="create-button" id="create">
+                    {% endif %}
+                    <label for="create">
+                        <img src="../static/images/más.webp" class="más" alt="create">
+                    </label> 
+                    <div class="create-form-container">
+                        <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
+                            {% csrf_token %}
+                            <p class="create-form__exception">{{name_invalid}}</p>
+                            <p class="create-form__exception"></p>>{{number_invalid}}</p>
+                            <p class="create-form__exception"></p>>{{is_not_valid}}</p>
+                            {{create_or_modifie_form}}
+                            <input type="submit" value="Crear objeto" class="submit">
+                            <label for="create" class="close">x</label>
+                        </form>
+                    </div>
+                </div> 
+            </li>
+        </ul>
+        <h1>/(*_*)\</h1>
+        <a href="{%url 'log_out'%}" class="log_out">
+            <div>Cerrar sesión</div>
+            <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
+        </a>
+    </header>
+    <main>
+        <img src="media/{{object.image}}" alt="object_image" class="object_image">
+        <h1>{{object.name}}</h1>
+        <form method="POST">
+            {{change_invalid}}
+            {{message}}
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Actualizar">
+        </form>
+    </main>
 </body>
 </html>
