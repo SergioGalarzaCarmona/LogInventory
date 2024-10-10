@@ -30,6 +30,7 @@
         {% endif %}
         <p>Stock antes: {{instance.stock_before}}</p>
         <p>Stock después: {{instance.stock_after}}</p>
+        <p>Hora: {{instance.date}}</p>
         <form method="POST">
             {% csrf_token %}
             <input type="number" hidden name="transaction" value="{{instance.transaction_id}}">
@@ -40,7 +41,7 @@
             <input type="submit" value="Retroceder cambios">
             {% endif %}
         </form> 
-    </div>  
+    </div>
     {% endfor %}
 </body> 
 </html> 
