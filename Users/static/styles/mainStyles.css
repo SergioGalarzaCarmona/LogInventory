@@ -21,6 +21,10 @@ body, div, ul, nav, header, footer, a, li, label {
 .header {
     height: 12vh;
     width: 100vw;
+    background-color: #fff;
+    position: sticky;
+    top: 0px;
+    z-index: 50;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -62,6 +66,7 @@ h1 {
 
 .más:hover {
     filter: drop-shadow(0 0 6px #48e);
+    cursor: pointer;  
 }
 
 .log_out {
@@ -91,13 +96,17 @@ h1 {
     place-content: center;
     width: 100%;
     min-height: 88vh;
-    background-image: url("../images/escritorio.webp");
-    background-size: cover;
-    border: solid 2px #000;
-    border-left: none;
-    border-right: none;
     position: relative;
     z-index: 10;
+}
+
+.space-work__background {
+    height: 88vh;
+    width: 100%;
+    background-image: url("../images/escritorio.webp");
+    background-size: cover;
+    position: fixed;
+    z-index: 20;
 }
 
 .space-work__objects {
@@ -116,6 +125,7 @@ h1 {
 
 .object {
     position: relative;
+    z-index: 25;
     direction: rtl;
     width: 26vw;
     justify-items:end;
@@ -135,15 +145,15 @@ h1 {
 .overlay {
     margin: -5px;
     position: absolute;
-    z-index: 15;
+    z-index: 30;
     width: 100%;
     height: 100%;
     background-color: #0006;
 }
 
-h3, p, img {
+h3, p {
     position: relative;
-    z-index: 20;
+    z-index: 40;
 }
 
 h3, p {
@@ -171,7 +181,6 @@ span {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 10;
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -179,19 +188,138 @@ span {
 
 /*---FORMS---*/
 
-.create-form {
+.create-form-container {
     display: none;
 }
 
-.create-button:checked ~ .create-form {
-    display: block;
+.create-button:checked ~ .create-form-container {
+    display: flex;
     position: absolute;
-    z-index: 30;
+    z-index: 60;
     padding: 30px;
     border: solid 1px #000;
     border-radius: 5px;
     background-color: #fff;
+    background-image: radial-gradient(#18233f44, #18233f11);
     width: 50vw;
-    height: 60vh;
+    height: 72.5vh;
     left: 25vw;
+    overflow: hidden;
+}
+
+.create_or_modifie_form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "name name stock"
+    "description description description"
+    "image image submit";
+}
+
+input {
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+    display: block;
+    width: 100%;
+    padding: 7px 6px;
+    font-family: "Montserrat";
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px #0003;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    outline: 1px #48e solid;
+}
+
+form > div > label {
+    color: #101632dd;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.name {
+    width: 85%;
+}
+
+form > div > .description {
+    font-family: "Montserrat";
+    font-size: 1rem;
+    position: static;
+    height: 60%;
+    margin: none;
+    margin-top: 2vh;
+    padding: 10px 20px;
+    resize: none;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px #0003;
+} 
+
+.submit {
+    grid-area: submit;
+    align-self: end;
+    justify-self: end;
+    margin: none;
+    margin-top: -50px;
+    background-color: #48e;
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    height: 40%;
+    width: 60%;
+    transition: color .2s, background-color .2s, box-shadow .2s; 
+}
+
+.submit:hover {
+    cursor: pointer;
+    color: #48e;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    right: 8px;
+    top: -10px;
+    display: grid;                
+    place-content: center;
+    color: #fff;
+    background-color: rgb(250, 50, 50);
+    border: none;  
+    border-radius: 0 0 5px 0;
+    transform: rotate(90deg);
+    font-family: sans-serif;
+    padding: 5px 3.2px;              
+    font-size: 1.8rem;             
+    font-weight: bold;              
+    cursor: pointer;       
+    transition: color .2s, back-ground-color .2s, border .2s;                   
+}
+
+.close:hover {
+    color: rgb(250, 50, 50);
+    background-color: #fff;
+    border: #000 solid 1px;
+    border-top: none;
+    border-left: none;
+}
+
+div:has(.name) {
+    grid-area: name;
+}
+
+div:has(.stock) {
+    grid-area: stock;
+}
+
+div:has(.description) {
+    grid-area: description;
+}
+
+div:has(.image) {
+    grid-area: image;
 }

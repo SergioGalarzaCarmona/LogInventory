@@ -32,14 +32,15 @@
                     <label for="create">
                         <img src="../static/images/más.webp" class="más" alt="create">
                     </label> 
-                    <div class="create-form">
+                    <div class="create-form-container">
                         <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
                             {% csrf_token %}
                             {{name_invalid}}
                             {{number_invalid}}
                             {{is_not_valid}}
                             {{create_or_modifie_form}}
-                            <input type="submit" value="Crear objeto">
+                            <input type="submit" value="Crear objeto" class="submit">
+                            <label for="create" class="close">x</label>
                         </form>
                     </div>
                 </div> 
@@ -52,6 +53,7 @@
         </a>
     </header>
     <main class="space-work">
+        <div class="space-work__background"></div>
         <section class="space-work__objects">
         {% for object in objects %}
         {% if object.show_object == 1 %}
@@ -74,6 +76,6 @@
         </a>
         </section>
     </main>
-    
+    <script src="../static/scripts/mainScript.js"></script>
 </body>
 </html>
