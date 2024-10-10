@@ -21,13 +21,22 @@
                 <li><a href="{% url 'record' %}">Historial</a></li>
             </ul>
         </div>
+        <div>
+            <ul>
+                <li><a href="{% url 'record' %}">Historial</a></li>
+            </ul>
+        </div>
         <ul class="header__tools">
             <li class="header__tools-create">
                 <div class="create">
                     {% if show == True %}
                     <input type="checkbox" class="create-button" id="create" checked>
                     {% else %}
+                    {% if show == True %}
+                    <input type="checkbox" class="create-button" id="create" checked>
+                    {% else %}
                     <input type="checkbox" class="create-button" id="create">
+                    {% endif %}
                     {% endif %}
                     <label for="create">
                         <img src="../static/images/más.webp" class="más" alt="create">
