@@ -16,17 +16,13 @@
         <div class="header__logo-container"></div>
             <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
         </div>
-        <div>
-            <ul>
-                <li><a href="{% url 'record' %}">Historial</a></li>
-            </ul>
-        </div>
-        <div>
-            <ul>
-                <li><a href="{% url 'record' %}">Historial</a></li>
-            </ul>
-        </div>
+        <h1>/(*_*)\</h1>
         <ul class="header__tools">
+            <li class="header__tools-record">
+                <a href="{% url 'record' %}" class="header__tools-record_link">
+                    <img src="{%static '/images/transaction-history_9710379.webp'%}" alt="Record image">
+                </a>
+            </li>
             <li class="header__tools-create">
                 <div class="create">
                     {% if show == True %}
@@ -41,6 +37,7 @@
                     <label for="create">
                         <img src="../static/images/más.webp" class="más" alt="create">
                     </label> 
+                    <div class="create-overlay"></div>
                     <div class="create-form-container">
                         <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
                             {% csrf_token %}
@@ -54,12 +51,15 @@
                     </div>
                 </div> 
             </li>
+            <li class="header__tools-log_out">
+                <a href="{%url 'log_out'%}" class="log_out">
+                    <div>Cerrar sesión</div>
+                    <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
+                </a>
+            </li>
         </ul>
-        <h1>/(*_*)\</h1>
-        <a href="{%url 'log_out'%}" class="log_out">
-            <div>Cerrar sesión</div>
-            <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
-        </a>
+        
+        
     </header>
     <main class="space-work">
         <div class="space-work__background"></div>
