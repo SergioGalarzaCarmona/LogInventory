@@ -89,6 +89,24 @@ h1 {
     filter: drop-shadow(4px 4px 6px #48e);
 }
 
+.create-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 55;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+    opacity: 0.5;
+}
+
+.create-button:checked ~ .create-overlay {
+    display: block;
+}
+
+
+
 /*---MAIN---*/
 
 .space-work {
@@ -149,7 +167,7 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: #0006;
-}
+} 
 
 h3, p {
     position: relative;
@@ -197,7 +215,6 @@ span {
     position: absolute;
     z-index: 60;
     padding: 30px;
-    border: solid 1px #000;
     border-radius: 5px;
     background-color: #fff;
     background-image: radial-gradient(#18233f44, #18233f11);
