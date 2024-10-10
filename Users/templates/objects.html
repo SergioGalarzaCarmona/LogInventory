@@ -1,17 +1,38 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View object</title>
+    <link rel="stylesheet" href="{%static '/styles/objectStyles.css'%}">
+    <title>Objetos</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="description" content="Objetos LOG INVENTORY">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
-    <img src="media/{{object.image}}" alt="object_image" class="object_image">
-    <h1>{{object.name}}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Actualizar">
-    </form>
+    <header class="header">
+        <div class="header__logo-container"></div>
+            <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
+        </div>
+        <ul class="header__tools">
+            
+        </ul>
+        <h1>/(*_*)\</h1>
+        <a href="{%url 'log_out'%}" class="log_out">
+            <div>Cerrar sesión</div>
+            <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
+        </a>
+    </header>
+    <main>
+        <img src="media/{{object.image}}" alt="object_image" class="object_image">
+        <h1>{{object.name}}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Actualizar">
+        </form>
+    </main>
 </body>
 </html>

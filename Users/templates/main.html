@@ -16,23 +16,33 @@
         <div class="header__logo-container"></div>
             <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
         </div>
+        <div>
+            <ul>
+                <li><a href="{% url 'record' %}">Historial</a></li>
+            </ul>
+        </div>
         <ul class="header__tools">
             <li class="header__tools-create">
                 <div class="create">
+                    {% if show == True %}
+                    <input type="checkbox" class="create-button" id="create" checked>
+                    {% else %}
                     <input type="checkbox" class="create-button" id="create">
+                    {% endif %}
                     <label for="create">
                         <img src="../static/images/más.webp" class="más" alt="create">
                     </label> 
                     <div class="create-form-container">
                         <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
                             {% csrf_token %}
-                            {{is_not_valid}}
+                            <p class="create-form__exception">{{name_invalid}}</p>
+                            <p class="create-form__exception"></p>{{number_invalid}}</p>
+                            <p class="create-form__exception"></p>{{is_not_valid}}</p>
                             {{create_or_modifie_form}}
                             <input type="submit" value="Crear objeto" class="submit">
                             <label for="create" class="close">x</label>
                         </form>
                     </div>
-                    <div class="create-overlay"></div>
                 </div> 
             </li>
         </ul>
@@ -61,7 +71,7 @@
                 </p>
                 <img src="media/{{object.image}}" alt="object_image" class="object_image">
             </div>
-            {% endif %}     
+            {% endif %}    
             {% endfor %}
         </a>
         </section>
