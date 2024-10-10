@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record</title>
+</head>
+<body>
+    <header>
+        <div>
+            <ul>
+                <li>
+                    <a href="{% url 'main' %}">Volver al area de trabajo</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <h1>historial</h1>
+    {% for instance in record %}
+    <div>
+        <h2>Objeto: {{instance.object_id.name}}</h2>
+        {% if instance.object_id.show_object == 0 %}
+        <p>Tipo de transaction: Eliminacion de objeto</p>
+        {% elif instance.type_transaction_id == 1 %}
+        <p>Tipo de transaction: Adición</p>
+        {% elif instance.type_transaction_id == 2 %}
+        <p>Tipo de transaction: Sustraccion</p>
+        {% elif instance.type_transaction_id == 4 %}
+        <p>Tipo de transaction: Remodelación de objeto</p>
+        {% endif %}
+        <p>Stock antes: {{instance.stock_before}}</p>
+        <p>Stock después: {{instance.stock_after}}</p>
+        <p>Hora: {{instance.date}}</p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="number" hidden name="transaction" value="{{instance.transaction_id}}">
+            <input type="number" hidden name=object value="{{instance.object_id.object_id}}">
+            {% if instance.type_transaction_id == 4 and instance.stock_before == instance.stock_after %}
+            <input type="submit" value="Retroceder cambios" disabled>
+            {% else %}
+            <input type="submit" value="Retroceder cambios">
+            {% endif %}
+        </form> 
+    </div>  
+    {% endfor %}
+</body> 
+</html> 
