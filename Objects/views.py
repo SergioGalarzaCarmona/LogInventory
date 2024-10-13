@@ -25,12 +25,15 @@ def main(request):
                 post = form.save(commit=False)
                 post.user_id = request.user
                 post.save()
+                object_instance = Objects.objects.get(name = request.POST['name'])
+                type_instance = Type_Transaction.objects.get(type_id = 3)
+                Transactions.objects.create(object_id = object_instance ,user_id = request.user, type_transaction = type_instance,stock_before = 0, stock_after = request.POST['stock'] )
                 return redirect('main')
             else:
                 object_instance = Objects.objects.filter(user_id = request.user)
                 return render(request,'main.html',{
                     'create_or_modifie_form' : ObjectForm,
-                    'objects' : object_instance,          
+                    'objects' : object_instance,       
                     'is_not_valid' : 'Algunos de los datos ingresados no son válidos',
                     'show' : True
                 }) 
@@ -52,7 +55,7 @@ def object_instance(request,id):
             'form' : form,
             'object' : object_instance,
             'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!.',
-            'record_object' : record_object
+            'record_object' : record_object[::-1]
         })
     else:
         try:
@@ -85,11 +88,11 @@ def object_instance(request,id):
                 'object' : object_instance_after,
                 'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!.',
                 'change_invalid' : 'No se ha realizado ningún cambio, realiza almenos un cambio.',
-                'record_object' : record_object
+                'record_object' : record_object[::-1]
             })
             else:
                 if equal_show_object == False:
-                    type_instance = Type_Transaction.objects.get(type_id = 5)
+                    type_instance = Type_Transaction.objects.get(type_id = 6)
                 elif  (object_instance_before.name != object_instance_after.name) or (object_instance_before.description != object_instance_after.description) or (object_instance_before.image != object_instance_after.image):
                     type_instance = Type_Transaction.objects.get(type_id = 4)
                 elif stock_before < int(request.POST['stock']):
@@ -102,7 +105,7 @@ def record(request):
     if request.method =='GET':
         transactions = Transactions.objects.filter(user_id = request.user)
         return render(request,'record.html',{
-            'record' : transactions,
+            'record' : transactions[::-1],
         })
     else: 
         object_instance = Objects.objects.get(object_id = request.POST['object'])
@@ -110,6 +113,8 @@ def record(request):
         object_instance.stock = transaction_instance.stock_before
         if object_instance.show_object == 0:
             object_instance.show_object = 1
+        type_instance = Type_Transaction.objects.get(type_id = 5)
+        Transactions.objects.create(object_id = object_instance,user_id = request.user,type_transaction = type_instance, stock_before = transaction_instance.stock_after, stock_after = transaction_instance.stock_before  )
         object_instance.save()
         return redirect('main')
         
