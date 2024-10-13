@@ -26,12 +26,12 @@
                 {% csrf_token %}
                 {{ error }}
                 <div>
-                    <label for="id_username">Nombre de usuario:</label>
-                    <input type="text" name="user" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+                    <label for="id_username" >Usuario:</label>
+                    <input type="text" name="user" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="Escribe tu nombre de usuario o tu correo electrónico">
                 </div>
                 <div>
                     <label for="id_password">Contraseña:</label>
-                    <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+                    <input type="password" name="password" autocomplete="current-password" required="" id="id_password" placeholder="Escribe tu contraseña">
                 </div>
                 <input type="submit" value="Iniciar sesión" class="log_in__input input--button">
                 <div class="sign_up__link">¿No tienes una cuenta? <a href="{% url 'sign_up' %}">Crea una!</a></div>
