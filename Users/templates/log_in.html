@@ -25,6 +25,7 @@
             <form class= "log_in__form" method="POST">
                 {% csrf_token %}
                 {{ error }}
+                {{ first_session }}
                 <div>
                     <label for="id_username" >Usuario:</label>
                     <input type="text" name="user" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="Escribe tu nombre de usuario o tu correo electrónico">
