@@ -99,6 +99,10 @@
                 <label for="image-clear_id">Borrar Imagen</label>
                 <input type="file" name="image" accept="image/*" id="id_image">
             </div>
+            <div>
+                <label for="id_show_object">Borrar Objecto:</label>
+                <input type="checkbox" name="show_object" id="id_show_object" checked="">
+            </div>
             <input type="submit" value="Actualizar">
         </form>
         {% for instance in record_object %}
