@@ -1,18 +1,25 @@
 from django.shortcuts import render,redirect
 from Objects.forms import ObjectForm,ModifieObject
 from Objects.models import Objects,Transactions,Type_Transaction
-# Create your views here.
+
+#This view show space work, here show all objects
 def main(request):
+    
+    #Filter objects by user
     object_instance = Objects.objects.filter(user_id = request.user)
     if request.method == 'GET':
         return render(request,'main.html',{
-            'create_or_modifie_form' : ObjectForm ,
+            'create_or_modifie_form' : ObjectForm,
             'objects' : object_instance,
             'show' : False
         })
     else:
+        
+        #Craate a instance to the model "Objects" with the form
         form = ObjectForm(request.POST,request.FILES)
+        #Check that the name of objects doesn't exist
         instance_valid = Objects.objects.filter(name = request.POST['name'], user_id = request.user)
+        #Verifie that the stock of object isn't negative
         if int(request.POST['stock']) < 0:
             return render(request,'main.html',{
                     'create_or_modifie_form' : ObjectForm,
@@ -20,11 +27,16 @@ def main(request):
                     'number_invalid' : 'El stock no puede ser negativo.',
                     'show' : True
                 }) 
+        #Verifie that the "instance_valid" don't have any object.
         if len(instance_valid) == 0:
+            #If nay data is wrong the object can't be created  
             if form.is_valid():
+                #Create object
                 post = form.save(commit=False)
                 post.user_id = request.user
                 post.save()
+                
+                #Create a instansce into the record
                 object_instance = Objects.objects.get(name = request.POST['name'])
                 type_instance = Type_Transaction.objects.get(type_id = 3)
                 Transactions.objects.create(object_id = object_instance ,user_id = request.user, type_transaction = type_instance,stock_before = 0, stock_after = request.POST['stock'] )

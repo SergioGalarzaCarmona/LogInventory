@@ -52,7 +52,7 @@ def log_in(request,code):
             return render(request,'log_in.html')
         else: 
             return render(request,'log_in.html',{
-                'first_session' : 'Primero inicia sesion para poder recuperar la contraseña.'
+                'error' : 'Primero inicia sesion para poder recuperar la contraseña.'
             })
     else:
         #If the caracter "@" is in "user", It's a email

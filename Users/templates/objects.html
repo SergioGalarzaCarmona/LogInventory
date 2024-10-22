@@ -32,7 +32,23 @@
             {{change_invalid}}
             {{message}}
             {% csrf_token %}
-            {{form}}
+            <div>
+                <label for="id_name">Nombre:</label>
+                <input type="text" name="name" value="{{object.name}}" maxlength="50" required="" id="id_name">
+            </div>
+            <div>
+                <label for="id_stock">Stock:</label>
+                <input type="number" name="stock" value="{{object.stock}}" required="" id="id_stock">  
+            </div>
+            <div>
+                <label for="id_description">Descripción:</label>
+                <textarea name="description" cols="40" rows="10" maxlength="500" required="" id="id_description">{{object.description}}</textarea>
+            </div>
+            <div>
+                <input type="checkbox" name="image-clear" id="image-clear_id">
+                <label for="image-clear_id">Borrar Imagen</label>
+                <input type="file" name="image" accept="image/*" id="id_image">
+            </div>
             <input type="submit" value="Actualizar">
         </form>
         {% for instance in record_object %}
