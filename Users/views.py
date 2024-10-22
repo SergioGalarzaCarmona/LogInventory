@@ -54,7 +54,7 @@ def log_in(request):
     if request.method == 'GET':
         return render(request,'log_in.html')
     else:
-        user = authenticate(email=request.POST['user'],password=request.POST['password'])
+        user = authenticate(username=request.POST['user'],password=request.POST['password'])
         if user is None:
             return render(request,'log_in.html',{
             'error' : "El usuario o la contraseña son incorrectos."

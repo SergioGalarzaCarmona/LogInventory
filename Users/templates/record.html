@@ -42,7 +42,7 @@
                 <input type="number" hidden name="transaction" value="{{instance.transaction_id}}">
                 <input type="number" hidden name=object value="{{instance.object_id.object_id}}">
                 {% if instance.type_transaction_id == 4 and instance.stock_before == instance.stock_after %}
-                <input class="go-back__button" type="submit" value="Retroceder cambios" disabled>
+                <input class="go-back__button" type="submit" value="Retroceder cambios" disabled="true">
                 {% else %}
                 <input class="go-back__button" type="submit" value="Retroceder cambios">
                 {% endif %}
@@ -50,5 +50,6 @@
         </div>  
         {% endfor %}
     </main>
+    <script src="../../static/scripts/recordScript.js"></script> 
 </body> 
 </html> 
