@@ -62,11 +62,10 @@ def object_instance(request,id):
     record_object = Transactions.objects.filter(user_id = request.user, object_id = id)
     if request.method == 'GET':
         object_instance = Objects.objects.get(object_id = id)
-        form = ModifieObject(instance=object_instance)
         return render(request,'objects.html',{
             'form' : form,
             'object' : object_instance,
-            'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!.',
+            'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!',
             'record_object' : record_object[::-1]
         })
     else:

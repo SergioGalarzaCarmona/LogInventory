@@ -3,7 +3,7 @@
     scroll-behavior: smooth;
 }
 
-body{
+body {
     font-family: "Montserrat";
     background-color: #fff;
     color: #070b1add;
@@ -42,7 +42,8 @@ body, div, ul, nav, header, footer, a, li, label {
 
 /*---MAIN---*/
 main {
-    margin-top: 5vh;
+    position: relative;
+    top: 5vh;
     display: grid;
     justify-content: center;
 }
@@ -115,3 +116,14 @@ h1 {
     box-shadow: 0 4px 8px #dcd9df, 0 6px 20px #fff;
 }
 
+.go-back__button-disabled {
+    opacity: .5;
+    grid-area: button;
+    font-family: "Montserrat";
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    transition: background-color .2s, color .2s;
+}
