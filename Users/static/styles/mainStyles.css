@@ -40,7 +40,9 @@ h1 {
 }
 
 .header__logo {
-    height: 12vh;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     border-radius: 0px 8px 8px 0px;
 }
 
@@ -62,6 +64,11 @@ h1 {
 
 .header__tools-record_link > img {
     height: 8vh;
+    transition: filter .2s;
+}
+
+.header__tools-record_link:hover {
+    filter: drop-shadow(0 0 6px #48e);
 }
 
 .header__tools-create {
@@ -114,6 +121,8 @@ h1 {
 }
 
 .log_out {
+    position: relative;
+    left: 12vw;
     display: flex;
     flex-direction: row;
     align-items: center;

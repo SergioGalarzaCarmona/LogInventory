@@ -65,7 +65,7 @@ def object_instance(request,id):
         return render(request,'objects.html',{
             'form' : form,
             'object' : object_instance,
-            'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!.',
+            'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!',
             'record_object' : record_object[::-1]
         })
     else:
