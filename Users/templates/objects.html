@@ -1,47 +1,93 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View object</title>
+    <link rel="stylesheet" href="{%static '/styles/objectStyles.css'%}">
+    <title>Objetos</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="description" content="Objetos LOG INVENTORY">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
-    <img src="media/{{object.image}}" alt="object_image" class="object_image">
-    <h1>{{object.name}}</h1>
-    <form method="POST">
-        {{change_invalid}}
-        {{message}}
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Actualizar">
-    </form>
-    {% for instance in record_object %}
-    <div>
-        <h2>Objeto: {{instance.object_id.name}}</h2>
-        {% if instance.object_id.show_object == 0 %}
-        <p>Tipo de transaction: Eliminacion de objeto</p>
-        {% elif instance.type_transaction_id == 1 %}
-        <p>Tipo de transaction: Adición</p>
-        {% elif instance.type_transaction_id == 2 %}
-        <p>Tipo de transaction: Sustraccion</p>
-        {% elif instance.type_transaction_id == 4 %}
-        <p>Tipo de transaction: Remodelación de objeto</p>
-        {% endif %}
-        <p>Stock antes: {{instance.stock_before}}</p>
-        <p>Stock después: {{instance.stock_after}}</p>
-        <p>Hora: {{instance.date}}</p>
+    <header class="header">
+        <div class="header__logo-container"></div>
+            <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
+        </div>
+        <ul class="header__tools">
+            
+        </ul>
+        <h1>/(*_*)\</h1>
+        <a href="{%url 'log_out'%}" class="log_out">
+            <div>Cerrar sesión</div>
+            <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
+        </a>
+    </header>
+    <main>
+        <img src="media/{{object.image}}" alt="object_image" class="object_image">
+        <h1>{{object.name}}</h1>
         <form method="POST">
+            {{change_invalid}}
+            {{message}}
             {% csrf_token %}
-            <input type="number" hidden name="transaction" value="{{instance.transaction_id}}">
-            <input type="number" hidden name=object value="{{instance.object_id.object_id}}">
-            {% if instance.type_transaction_id == 4 and instance.stock_before == instance.stock_after %}
-            <input type="submit" value="Retroceder cambios" disabled>
-            {% else %}
-            <input type="submit" value="Retroceder cambios">
+            <div>
+                <label for="id_name">Nombre:</label>
+                <input type="text" name="name" value="{{object.name}}" maxlength="50" required="" id="id_name">
+            </div>
+            <div>
+                <label for="id_stock">Stock:</label>
+                <input type="number" name="stock" value="{{object.stock}}" required="" id="id_stock">  
+            </div>
+            <div>
+                <label for="id_description">Descripción:</label>
+                <textarea name="description" cols="40" rows="10" maxlength="500" required="" id="id_description">{{object.description}}</textarea>
+            </div>
+            <div>
+                <input type="checkbox" name="image-clear" id="image-clear_id">
+                <label for="image-clear_id">Borrar Imagen</label>
+                <input type="file" name="image" accept="image/*" id="id_image">
+            </div>
+            <div>
+                <label for="id_show_object">Show object:</label>
+                <input type="checkbox" name="show_object" id="id_show_object" checked="">
+            </div>
+            <input type="submit" value="Actualizar">
+        </form>
+        {% for instance in record_object %}
+        <div>
+            {% if instance.object_id.show_object == 6 %}
+            <p class="transaction-type">Tipo de transaction: Eliminacion de objeto</p>
+            {% elif instance.type_transaction_id == 1 %}
+            <p class="transaction-type">Tipo de transaction: Adición</p>
+            {% elif instance.type_transaction_id == 2 %}
+            <p class="transaction-type">Tipo de transaction: Sustraccion</p>
+            {% elif instance.type_transaction_id == 3 %}
+            <p class="transaction-type">Tipo de transaction: Creación</p>
+            {% elif instance.type_transaction_id == 4 %}
+            <p class="transaction-type">Tipo de transaction: Remodelación de objeto</p>
+            {% elif instance.type_transaction_id == 5 %}
+            <p class="transaction-type">Tipo de transaction: Retroceso</p>
             {% endif %}
-        </form> 
-    </div>
-    {% endfor %}
-    </div>
+            <p>Stock antes: {{instance.stock_before}}</p>
+            <p>Stock después: {{instance.stock_after}}</p>
+            <p>Hora: {{instance.date}}</p>
+            <form class="go-back" method="POST">
+                {% csrf_token %}
+                <input type="number" hidden name="transaction" value="{{instance.transaction_id}}">
+                <input type="number" hidden name=object value="{{instance.object_id.object_id}}">
+                {% if instance.type_transaction_id == 4 and instance.stock_before == instance.stock_after %}
+                <input class="go-back__button" type="submit" value="Retroceder cambios" disabled>
+                {% elif instance.type_transaction_id == 5 or instance.type_transaction_id == 3%}
+                <input class="go-back__button" type="submit" value="Retroceder cambios" disabled>
+                {% else %}
+                <input class="go-back__button" type="submit" value="Retroceder cambios">
+                {% endif %}
+            </form> 
+        </div>
+        {% endfor %}
+        </div>
+    </main>
 </body>
 </html>
