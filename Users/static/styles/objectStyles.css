@@ -7,7 +7,7 @@ body{
     font-family: "Montserrat";
     background-color: #fff;
     color: #070b1add;
-    height: 100vh;
+    background-color: #e2eaff;
     overflow-x: hidden;
 }
 
@@ -24,9 +24,7 @@ body, div, ul, nav, header, footer, a, li, label {
     height: 12vh;
     width: 100vw;
     background-color: #fff;
-    position: sticky;
-    top: 0px;
-    z-index: 50;
+    z-index: 20;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -35,7 +33,7 @@ body, div, ul, nav, header, footer, a, li, label {
 .header__tools {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: .6fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 100%;
     grid-template-areas: 
     "work-space record space space log-out";
@@ -44,11 +42,15 @@ body, div, ul, nav, header, footer, a, li, label {
 .work-space {
     grid-area: work-space;
     padding-left: 10px;
+    display: grid;
+    place-content: center;
 }
 
 .work-space__link {
     width: fit-content;
     display: flex;
+    transition: filter .2s;
+    text-decoration: none;
 }
 
 .work-space__link:hover {
@@ -56,7 +58,7 @@ body, div, ul, nav, header, footer, a, li, label {
 }
 
 .work-space-img {
-    height: 50px;
+    height: 8vh;
 }
 
 .work-space__link > div {
@@ -65,23 +67,37 @@ body, div, ul, nav, header, footer, a, li, label {
     align-items: end;
     font-size: .9rem;
     color: #000;
+    text-decoration: inherit;
 }
 
 .header__tools-record {
     grid-area: record;
+    justify-self: start;
     display: grid;
-    justify-items: start;
-    align-items: center;
+    place-content: center;
     list-style: none;
 }
 
-.header__tools-record_link > img {
-    height: 8vh;
+.header__tools-record_link {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
     transition: filter .2s;
 }
 
 .header__tools-record_link:hover {
     filter: drop-shadow(0 0 6px #48e);
+}
+
+.header__tools-record_link > img {
+    height: 8vh;
+}
+
+.header__tools-record_link > p {
+    color: #48e;
+    margin: 0;
+    text-decoration: inherit;
+    align-self: flex-end;
 }
 
 .log_out {
@@ -142,8 +158,9 @@ main {
     object-fit: cover;
     border-radius: 12px 0 0 12px;
     transition: .2s opacity;
+    box-shadow: 0px 0px 40px #0006;
 }
-
+ 
 .object__img:hover {
     opacity: .5;
 }
@@ -208,7 +225,7 @@ label {
     font-weight: bold;
 }
 
-input {
+input{
     display: block;
     width: 100%;
     margin-bottom: 3vh;
@@ -356,6 +373,7 @@ input {
 }
 
 .go-back__button {
+    margin: 0;
     width: fit-content;
     padding: 0;
     grid-area: button;
@@ -367,7 +385,7 @@ input {
     color: #000;
     transition: background-color .2s, color .2s;
 }
-
+ 
 .go-back__button:hover {
     cursor: pointer;
     background-color: #a18262;
@@ -376,6 +394,7 @@ input {
 }
 
 .go-back__button-disabled {
+    margin: 0;
     width: fit-content;
     padding: 0;
     opacity: .5;

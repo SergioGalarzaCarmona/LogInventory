@@ -14,13 +14,13 @@
 <body>
     <header class="header">
         <div class="header__logo-container">
-            <img class="header__logo" src="{%static '/images/LogoType.webp'%}" alt="LOG INVENTORY">
+            <img class="header__logo" src="{%static '/images/logo.webp'%}" alt="LOG INVENTORY">
         </div>
-        <h1>LOG INVENTORY</h1>
         <ul class="header__tools">
             <li class="header__tools-record">
                 <a href="{% url 'record' %}" class="header__tools-record_link">
                     <img src="{%static '/images/transaction-history_9710379.webp'%}" alt="Record image">
+                    <p>Historial</p>
                 </a>
             </li>
             <li class="header__tools-create">
@@ -36,14 +36,15 @@
                     {% endif %}
                     <label for="create">
                         <img src="../static/images/más.webp" class="más" alt="create">
+                        <p>Crear</p>
                     </label> 
                     <div class="create-overlay"></div>
                     <div class="create-form-container">
                         <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
                             {% csrf_token %}
                             <p class="create-form__exception">{{name_invalid}}</p>
-                            <p class="create-form__exception"></p>{{number_invalid}}</p>
-                            <p class="create-form__exception"></p>{{is_not_valid}}</p>
+                            <p class="create-form__exception">{{number_invalid}}</p>
+                            <p class="create-form__exception">{{is_not_valid}}</p>
                             {{create_or_modifie_form}}
                             <input type="submit" value="Crear objeto" class="submit">
                             <label for="create" class="close">x</label>
@@ -58,8 +59,6 @@
                 </a>
             </li>
         </ul>
-        
-        
     </header>
     <main class="space-work">
         <div class="space-work__background"></div>
