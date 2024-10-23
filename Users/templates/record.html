@@ -25,7 +25,7 @@
         {% for instance in record %}
         <div class="transaction">
             <h2 class="object-name">Objeto: {{instance.object_id.name}}</h2>
-            {% if instance.object_id.show_object == 6 %}
+            {% if instance.type_transaction_id == 6 %}
             <p class="transaction-type">Tipo de transaction: Eliminacion de objeto</p>
             {% elif instance.type_transaction_id == 1 %}
             <p class="transaction-type">Tipo de transaction: Adición</p>
