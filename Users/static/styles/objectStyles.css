@@ -19,6 +19,8 @@ body, div, ul, nav, header, footer, a, li, label {
 /*---HEADER---*/
 
 .header {
+    position: sticky;
+    top: 0;
     height: 12vh;
     width: 100vw;
     background-color: #fff;
@@ -30,24 +32,67 @@ body, div, ul, nav, header, footer, a, li, label {
     align-items: center;
 }
 
-h1 {
-    margin: 20px;
+.header__tools {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100%;
+    grid-template-areas: 
+    "work-space record space space log-out";
 }
 
-.header__logo-container {
+.work-space {
+    grid-area: work-space;
+    padding-left: 10px;
+}
+
+.work-space__link {
+    width: fit-content;
     display: flex;
-    height: 12vh;
 }
 
-.header__logo {
-    height: 12vh;
-    border-radius: 0px 8px 8px 0px;
+.work-space__link:hover {
+    filter: drop-shadow(0 4px 8px #48e);
 }
 
+.work-space-img {
+    height: 50px;
+}
+
+.work-space__link > div {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: .9rem;
+    color: #000;
+}
+
+.header__tools-record {
+    grid-area: record;
+    display: grid;
+    justify-items: start;
+    align-items: center;
+    list-style: none;
+}
+
+.header__tools-record_link > img {
+    height: 8vh;
+    transition: filter .2s;
+}
+
+.header__tools-record_link:hover {
+    filter: drop-shadow(0 0 6px #48e);
+}
 
 .log_out {
-    position: absolute;
-    right: 2vw;
+    grid-area: log-out;
+    display: flex;
+    justify-content: end;
+    padding-right: 30px;
+    list-style: none;
+}
+
+.log_out-link {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -61,8 +106,289 @@ h1 {
     margin-left: 1vw;
 }
 
-.log_out:hover {
+.log_out-link:hover {
     filter: drop-shadow(4px 4px 6px #48e);
 }
 
 /*---MAIN---*/
+
+main {
+    margin-top: 4vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 45vw 50vw;
+    grid-template-rows: 90vh;
+    grid-template-areas: 
+    "image description";
+}
+
+.image__change-button {
+    cursor: pointer;
+    height: fit-content;
+    width: fit-content;
+}
+
+.object__img-container {
+    grid-area: image;
+    height: 90vh;
+    width: 45vw;
+    margin: 2.5vw;
+    margin-top: 0;
+}
+
+.object__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px 0 0 12px;
+    transition: .2s opacity;
+}
+
+.object__img:hover {
+    opacity: .5;
+}
+
+.image__change-button:has(+ .image__delete-button:hover) > .object__img-container > .object__img {
+    opacity: .5;
+}
+
+.image__delete-button {
+    position: absolute;
+    top: 17vh;
+    left: 3vw;
+    z-index: 10;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: box-shadow .2s;
+}
+
+.image__delete-button:hover {
+    box-shadow: 0 4px 8px #000;
+}
+
+.image__delete-button > img {
+    height: 5vh;
+
+}
+
+h1 {
+    position: relative;
+    top: -20px;
+    margin: 0;
+}
+
+.object__description {
+    position: relative;
+    left: 2.5vw;
+    grid-area: description;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 30px;
+    font-size: 16px;
+    border: none;
+    background-image: radial-gradient(#18233f44, #18233f11);
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0px 0px 40px #0006;
+}
+
+div:has(textarea) {
+    display: flex;
+    flex-direction: column;
+}
+
+input:focus {
+    outline: none;
+    outline: 1px #48e solid;
+}
+
+label {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 3vh;
+    padding: 7px 6px;
+    font-family: "Montserrat";
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px #0003;
+}
+
+.name {
+    margin-top: 2vh;
+}
+
+.name__label {
+    position: relative;
+    top: 2vh;
+}
+
+.object__image-change {
+    display: none;
+}
+
+.description {
+    margin-bottom: 3vh;
+    resize: none;
+    outline: none; 
+    border: none;
+    font-family: "Montserrat";
+    font-size: 1rem;
+    height: 20vh;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px #0003;
+}
+
+.description:focus {
+    outline: 1px #48e solid;
+}
+
+.image-options {
+    display: none;
+}
+
+.update {
+    margin: none;
+    background-color: #48e;
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px;
+    width: 100%;   
+    transition: background-color .2s, color .2s;
+}
+
+.update:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #48e;
+}
+
+.object__delete {
+    display: none;
+} 
+
+.object__delete-button {
+    display: block;
+    margin-top: 3vh;
+    font-size: 1rem;
+    font-weight: 100;
+    text-align: center;
+    width: 100%;
+    background-color: #d00;
+    color: #fff;
+    padding: 4px;
+    border-radius: 4px; 
+    cursor: pointer;
+    transition: background-color .2s, color .2s;
+}
+
+.object__delete-button:hover {
+    background-color: #fff;
+    color: #d00;
+}
+
+.object__record {
+    width: 100vw;
+    display: grid;
+    margin-top: 10vh;
+    justify-items: center;
+}
+
+.object__record > h2 {
+    text-align: center;
+    font-size: 3.6rem;
+}
+
+.transaction {
+    width: 95vw;
+    height: 10vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100%;
+    grid-template-areas: 
+    "type before after date date button";
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px #fff solid;
+    background-color: #48e;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 3vh;
+    padding: 0 2.5vw;
+}
+
+.transaction:last-child {
+    margin-bottom: 10vh;
+}
+
+.transaction > p, .transaction > input, .transaction > h2 {
+    place-self: center;
+}
+
+.transaction-type {
+    grid-area: type;
+}
+
+.stock-before {
+    grid-area: before;
+}
+
+.stock-after {
+    grid-area: after;
+}
+
+.time {
+    grid-area: date;
+}
+
+.go-back {
+    height: 10vh;
+    width: 19vw;
+    display: grid;
+    place-content: center;
+}
+
+.go-back__button {
+    width: fit-content;
+    padding: 0;
+    grid-area: button;
+    font-family: "Montserrat";
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    transition: background-color .2s, color .2s;
+}
+
+.go-back__button:hover {
+    cursor: pointer;
+    background-color: #a18262;
+    color: #fff;
+    box-shadow: 0 4px 8px #dcd9df, 0 6px 20px #fff;
+}
+
+.go-back__button-disabled {
+    width: fit-content;
+    padding: 0;
+    opacity: .5;
+    grid-area: button;
+    font-family: "Montserrat";
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    transition: background-color .2s, color .2s;
+}
+
+.hidden {
+    display: none;
+}
