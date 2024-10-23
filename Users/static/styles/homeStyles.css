@@ -235,6 +235,10 @@ main > p {
     background: linear-gradient(#0006, #fff);
 }
 
+.division__text {
+    text-align: justify;
+}
+
 /*---ASIDE---*/
 
 aside {

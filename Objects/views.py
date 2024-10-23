@@ -62,7 +62,6 @@ def object_instance(request,id):
     record_object = Transactions.objects.filter(user_id = request.user, object_id = id)
     if request.method == 'GET':
         object_instance = Objects.objects.get(object_id = id)
-        form = ModifieObject(instance=object_instance)
         return render(request,'objects.html',{
             'form' : form,
             'object' : object_instance,
