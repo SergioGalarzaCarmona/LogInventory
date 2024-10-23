@@ -24,9 +24,16 @@
         <div class="log_in">
             <form class= "log_in__form" method="POST">
                 {% csrf_token %}
-                {{ error }}
-                {{ form }}
-                <input type="submit" value="Log in" class="log_in__input input--button">
+                <p class="exception">{{ error }}</p>
+                <div>
+                    <label for="id_username" >Usuario:</label>
+                    <input type="text" name="user" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="Escribe tu nombre de usuario o tu correo electrónico">
+                </div>
+                <div>
+                    <label for="id_password">Contraseña:</label>
+                    <input type="password" name="password" autocomplete="current-password" required="" id="id_password" placeholder="Escribe tu contraseña">
+                </div>
+                <input type="submit" value="Iniciar sesión" class="log_in__input input--button">
                 <div class="sign_up__link">¿No tienes una cuenta? <a href="{% url 'sign_up' %}">Crea una!</a></div>
             </form>
         </div>

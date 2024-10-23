@@ -1,46 +1,61 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Record</title>
+    <link rel="stylesheet" href="{%static '/styles/recordStyles.css'%}">
+    <title>Espacio de trabajo</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="description" content="Historial LOG INVENTORY">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
     <header>
-        <div>
-            <ul>
-                <li>
-                    <a href="{% url 'main' %}">Volver al area de trabajo</a>
-                </li>
-            </ul>
+        <div class="space-work">   
+            <a href="{% url 'main' %}" class="space-work__link">
+                <img src="{%static '/images/come-back.webp'%}" alt="space-work link image">
+                Volver al area de trabajo
+            </a>
         </div>
     </header>
-    <h1>historial</h1>
-    {% for instance in record %}
-    <div>
-        <h2>Objeto: {{instance.object_id.name}}</h2>
-        {% if instance.object_id.show_object == 0 %}
-        <p>Tipo de transaction: Eliminacion de objeto</p>
-        {% elif instance.type_transaction_id == 1 %}
-        <p>Tipo de transaction: Adición</p>
-        {% elif instance.type_transaction_id == 2 %}
-        <p>Tipo de transaction: Sustraccion</p>
-        {% elif instance.type_transaction_id == 4 %}
-        <p>Tipo de transaction: Remodelación de objeto</p>
-        {% endif %}
-        <p>Stock antes: {{instance.stock_before}}</p>
-        <p>Stock después: {{instance.stock_after}}</p>
-        <form method="POST">
-            {% csrf_token %}
-            <input type="number" hidden name="transaction" value="{{instance.transaction_id}}">
-            <input type="number" hidden name=object value="{{instance.object_id.object_id}}">
-            {% if instance.type_transaction_id == 4 and instance.stock_before == instance.stock_after %}
-            <input type="submit" value="Retroceder cambios" disabled>
-            {% else %}
-            <input type="submit" value="Retroceder cambios">
+    <main>
+        <h1>Historial</h1>
+        {% for instance in record %}
+        <div class="transaction">
+            <h2 class="object-name">Objeto: {{instance.object_id.name}}</h2>
+            {% if instance.type_transaction_id == 6 %}
+            <p class="transaction-type">Tipo de transaction: Eliminacion de objeto</p>
+            {% elif instance.type_transaction_id == 1 %}
+            <p class="transaction-type">Tipo de transaction: Adición</p>
+            {% elif instance.type_transaction_id == 2 %}
+            <p class="transaction-type">Tipo de transaction: Sustraccion</p>
+            {% elif instance.type_transaction_id == 3 %}
+            <p class="transaction-type">Tipo de transaction: Creación</p>
+            {% elif instance.type_transaction_id == 4 %}
+            <p class="transaction-type">Tipo de transaction: Remodelación de objeto</p>
+            {% elif instance.type_transaction_id == 5 %}
+            <p class="transaction-type">Tipo de transaction: Retroceso</p>
             {% endif %}
-        </form> 
-    </div>  
-    {% endfor %}
+            <p class="stock-before">Stock antes: {{instance.stock_before}}</p>
+            <p class="stock-after">Stock después: {{instance.stock_after}}</p>
+            <p class="time">Fecha y hora: {{instance.date}}</p>
+            <form class="go-back" method="POST">
+                {% csrf_token %}
+                <input type="number" hidden name="transaction" value="{{instance.transaction_id}}">
+                <input type="number" hidden name=object value="{{instance.object_id.object_id}}">
+                {% if instance.type_transaction_id == 4 and instance.stock_before == instance.stock_after %}
+                <input class="go-back__button" type="submit" value="Retroceder cambios" disabled>
+                {% elif instance.type_transaction_id == 5 or instance.type_transaction_id == 3%}
+                <input class="go-back__button" type="submit" value="Retroceder cambios" disabled>
+                {% else %}
+                <input class="go-back__button" type="submit" value="Retroceder cambios">
+                {% endif %}
+            </form> 
+        </div>  
+        {% endfor %}
+    </main>
+    <script src="../../static/scripts/recordScript.js"></script> 
 </body> 
 </html> 
