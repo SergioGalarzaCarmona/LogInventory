@@ -49,16 +49,22 @@
                 <label for="image-clear_id">Borrar Imagen</label>
                 <input type="file" name="image" accept="image/*" id="id_image">
             </div>
+            <div>
+                <label for="id_show_object">Show object:</label>
+                <input type="checkbox" name="show_object" id="id_show_object" checked="">
+            </div>
             <input type="submit" value="Actualizar">
         </form>
         {% for instance in record_object %}
         <div>
-            {% if instance.object_id.show_object == 0 %}
+            {% if instance.object_id.show_object == 6 %}
             <p class="transaction-type">Tipo de transaction: Eliminacion de objeto</p>
             {% elif instance.type_transaction_id == 1 %}
             <p class="transaction-type">Tipo de transaction: Adición</p>
             {% elif instance.type_transaction_id == 2 %}
             <p class="transaction-type">Tipo de transaction: Sustraccion</p>
+            {% elif instance.type_transaction_id == 3 %}
+            <p class="transaction-type">Tipo de transaction: Creación</p>
             {% elif instance.type_transaction_id == 4 %}
             <p class="transaction-type">Tipo de transaction: Remodelación de objeto</p>
             {% elif instance.type_transaction_id == 5 %}

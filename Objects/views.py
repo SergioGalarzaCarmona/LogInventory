@@ -38,7 +38,7 @@ def main(request):
                 
                 #Create a instansce into the record
                 object_instance = Objects.objects.get(name = request.POST['name'])
-                type_instance = Type_Transaction.objects.get(type_id = 3)
+                type_instance = Type_Transaction.objects.get(type_id = 3) 
                 Transactions.objects.create(object_id = object_instance ,user_id = request.user, type_transaction = type_instance,stock_before = 0, stock_after = request.POST['stock'] )
                 return redirect('main')
             else:
@@ -78,6 +78,8 @@ def object_instance(request,id):
             object_instance = Objects.objects.get(object_id = request.POST['object'])
             transaction_instance = Transactions.objects.get(transaction_id = request.POST['transaction'])
             object_instance.stock = transaction_instance.stock_before
+            type_instance = Type_Transaction.objects.get(type_id = 5)
+            Transactions.objects.create(object_id = object_instance,user_id = request.user,type_transaction = type_instance, stock_before = transaction_instance.stock_after, stock_after = transaction_instance.stock_before  )
             if object_instance.show_object == 0:
                 object_instance.show_object = 1
             object_instance.save()
