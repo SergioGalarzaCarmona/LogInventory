@@ -77,6 +77,11 @@ body, div, ul, nav, header, footer, a, li, label {
 
 .header__tools-record_link > img {
     height: 8vh;
+    transition: filter .2s;
+}
+
+.header__tools-record_link:hover {
+    filter: drop-shadow(0 0 6px #48e);
 }
 
 .log_out {
@@ -124,18 +129,18 @@ main {
 }
 
 .object__img-container {
-    margin-top: 4vh;
     grid-area: image;
-    height: 80vh;
+    height: 90vh;
     width: 45vw;
-    padding: 3vh;
+    margin: 2.5vw;
+    margin-top: 0;
 }
 
 .object__img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 12px 0 0 12px;
     transition: .2s opacity;
 }
 
@@ -149,8 +154,8 @@ main {
 
 .image__delete-button {
     position: absolute;
-    top: 24vh;
-    left: 25px;
+    top: 17vh;
+    left: 3vw;
     z-index: 10;
     cursor: pointer;
     border-radius: 5px;
@@ -173,17 +178,18 @@ h1 {
 }
 
 .object__description {
+    position: relative;
+    left: 2.5vw;
     grid-area: description;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px 30px;
+    padding: 0px 30px;
     font-size: 16px;
     border: none;
     background-image: radial-gradient(#18233f44, #18233f11);
-    padding: 30px;
-    border-radius: 12px;
+    border-radius: 0 12px 12px 0;
     box-shadow: 0px 0px 40px #0006;
 }
 
@@ -205,7 +211,7 @@ label {
 input {
     display: block;
     width: 100%;
-    margin-bottom: 2vh;
+    margin-bottom: 3vh;
     padding: 7px 6px;
     font-family: "Montserrat";
     font-size: 16px;
@@ -228,7 +234,7 @@ input {
 }
 
 .description {
-    margin-bottom: 2vh;
+    margin-bottom: 3vh;
     resize: none;
     outline: none; 
     border: none;
@@ -255,10 +261,13 @@ input {
     padding: 4px;
     border-radius: 4px;
     width: 100%;   
+    transition: background-color .2s, color .2s;
 }
 
 .update:hover {
     cursor: pointer;
+    background-color: #fff;
+    color: #48e;
 }
 
 .object__delete {
@@ -277,6 +286,12 @@ input {
     padding: 4px;
     border-radius: 4px; 
     cursor: pointer;
+    transition: background-color .2s, color .2s;
+}
+
+.object__delete-button:hover {
+    background-color: #fff;
+    color: #d00;
 }
 
 .object__record {

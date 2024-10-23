@@ -11,7 +11,7 @@
     <meta name="keywords" content="LOG INVENTORY,cuenta LOG INVENTORY,crear cuenta LOG INVENTORY">
     <meta name="author" content="LOG INVENTORY">
     <meta name="robots" content="index, follow"> 
-</head>
+</head> 
 <body>
     <main>
         <div class="frame">
@@ -25,7 +25,7 @@
             <div class="sign_up">
                 <form method="POST" class="sign_up__form">
                     {% csrf_token %}
-                    {{error}}
+                    <p class="exception">{{error}}</p>
                     <div>
                         <label for="id_username">Nombre de usuario:</label>
                         <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" aria-describedby="id_username_helptext" placeholder="Escribe un nombre de usuario"> 

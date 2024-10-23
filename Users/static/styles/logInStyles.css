@@ -57,6 +57,10 @@ h1 {
     justify-items: center;
 }
 
+.exception {
+    color: #f00;
+}
+
 input:focus {
     outline: none;
     outline: 1px #48e solid;

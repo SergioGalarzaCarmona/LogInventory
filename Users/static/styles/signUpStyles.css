@@ -36,7 +36,7 @@ h1 {
 
 .sign_up {
     width: 45vw;
-    height: 70vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,6 +55,10 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-items: center;
+}
+
+.exception {
+    color: #f00;
 }
 
 input:focus{
