@@ -66,6 +66,7 @@ def object_instance(request,id):
     if request.method == 'GET':
         #filter obejct with this id
         object_instance = Objects.objects.get(object_id = id)
+        form = ModifieObject(instance=object_instance)
         return render(request,'objects.html',{
             'object' : object_instance,
             'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!',
@@ -122,7 +123,7 @@ def object_instance(request,id):
             if validation == True:
                 return render(request,'objects.html',{
                 'object' : object_instance_after,
-                'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!.',
+                'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!',
                 'change_invalid' : 'No se ha realizado ningún cambio, realiza almenos un cambio.',
                 'record_object' : record_object[::-1]
             })
