@@ -67,10 +67,11 @@
                     <input class="object__image-change" type="file" name="image" accept="image/*" id="id_image">
                 </div>
                 <div>
-                    <input class="object__delete" type="checkbox" name="show_object" id="id_show_object" checked value="delete_object">
+                    <input class="object__delete" type="checkbox" name="show_object" id="id_show_object" checked onclick=triggerSubmit()>
+                    <input class="hidden" type="text" hidden name="support" value="delete_object">
                 </div>
                 <input class="update" id="update" type="submit" value="Actualizar">  
-                <label class="object__delete-button" for="id_show_object" onclick="triggerSubmit()">Borrar Objeto</label> 
+                <label class="object__delete-button" for="id_show_object">Borrar Objeto</label> 
             </form>
         </div>
         <div class="object__record">

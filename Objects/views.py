@@ -96,8 +96,12 @@ def object_instance(request,id):
             object_instance.save()
             return redirect('main')
         else:
+            try: 
+                validation_delete_button = str(request.POST['show_object'])
+            except:
+                validation_delete_button = True
             object_instance = Objects.objects.get(object_id = id)
-            if str(request.POST['show_object']) == 'delete_object':
+            if validation_delete_button == 'delete_object':
                 object_instance.show_object = False
                 object_instance.save()
                 type_instance = Type_Transaction.objects.get(type_id = 6)
