@@ -114,12 +114,20 @@ def object_instance(request,id):
             form.save() 
             #validate 
             object_instance_after = Objects.objects.get(object_id = id)
+            #make all the comparisons to see if there was any change.
             equal_name = (str(request.POST['name']) == object_instance_after.name)
-            equal_stock = (int(request.POST['stock']) == object_instance_after.stock)
+            equal_stock = (int(request.POST['stock']) == stock_before)
             equal_description = (str(request.POST['description']) == object_instance_after.description)
-            equal_image = (str(request.POST['image']) == object_instance_after.image)
+            if request.POST['image'] == '':
+                equal_image = True
+            else:
+                equal_image = (f'object_images/{str(request.POST['image'])}' == object_instance_after.image)
             try:
-                equal_show_object = (request.POST['show_object'] == object_instance_after.show_object)
+                if str(request.POST['show_object']) == 'on':
+                    show_object_before = True
+                else:
+                    show_object_before = False
+                equal_show_object = (show_object_before == object_instance_after.show_object)
             except:
                 equal_show_object = False
             validation = equal_name and equal_stock and equal_description and equal_image and equal_show_object
@@ -135,7 +143,7 @@ def object_instance(request,id):
                 #Select which that the type of transaction
                 if equal_show_object == False:
                     type_instance = Type_Transaction.objects.get(type_id = 6)
-                elif  (str(request.POST['name']) != object_instance_after.name) or (str(request.POST['description']) != object_instance_after.description) or (str(request.POST['image']) != object_instance_after.image):
+                elif  (not equal_name) or (not equal_description) or (not equal_image):
                     type_instance = Type_Transaction.objects.get(type_id = 4)
                 elif stock_before < int(request.POST['stock']):
                     type_instance = Type_Transaction.objects.get(type_id = 1)
