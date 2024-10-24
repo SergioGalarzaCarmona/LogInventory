@@ -40,7 +40,6 @@
                 <img src="media/{{object.image}}" alt="object-image" class="object__img">
             </div>
         </label>
-        <label class="image__delete-button" for="image-clear_id">
         <label class="image__delete-button" for="image-clear_id" >
             <img src="../static/images/basura.webp" alt="delete-image">
         </label>
@@ -78,7 +77,7 @@
             <h2>Historial</h2>
             {% for instance in record_object %}
             <div class="transaction">
-                {% if instance.object_id.show_object == 0 %}
+                {% if instance.type_transaction_id == 6 %}
                 <p class="transaction-type">Tipo de transaction: Eliminacion de objeto</p>
                 {% elif instance.type_transaction_id == 1 %}
                 <p class="transaction-type">Tipo de transaction: Adición</p>
