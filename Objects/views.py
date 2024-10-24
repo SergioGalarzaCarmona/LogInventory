@@ -36,12 +36,13 @@ def main(request):
                 post.user_id = request.user
                 post.save()
                 
-                #Create a instansce into the record
+                #Create a instance into the record
                 object_instance = Objects.objects.get(name = request.POST['name'])
                 type_instance = Type_Transaction.objects.get(type_id = 3) 
                 Transactions.objects.create(object_id = object_instance ,user_id = request.user, type_transaction = type_instance,stock_before = 0, stock_after = request.POST['stock'] )
                 return redirect('main')
             else:
+                #Filter all items that the user has created
                 object_instance = Objects.objects.filter(user_id = request.user)
                 return render(request,'main.html',{
                     'create_or_modifie_form' : ObjectForm,
@@ -49,6 +50,7 @@ def main(request):
                     'is_not_valid' : 'Algunos de los datos ingresados no son válidos',
                     'show' : True
                 }) 
+        #If instance_valid have some data, is because the name already exist
         else: 
             return render(request,'main.html',{
                     'create_or_modifie_form' : ObjectForm,
@@ -59,60 +61,96 @@ def main(request):
             
             
 def object_instance(request,id):
-    record_object = Transactions.objects.filter(user_id = request.user, object_id = id)
+    #Filter record with the object id. 
+    record_object = Transactions.objects.filter(object_id = id)
     if request.method == 'GET':
+        #filter obejct with this id
         object_instance = Objects.objects.get(object_id = id)
+        form = ModifieObject(instance=object_instance)
         return render(request,'objects.html',{
-            'form' : form,
             'object' : object_instance,
             'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!',
             'record_object' : record_object[::-1]
         })
     else:
+        # If the user click on "Retroceder cambios" enter on "if"
         try:
-            validation_record = request.POST['object']
+            validation_record_button = request.POST['object']
         except:
-            validation_record = None
-        if validation_record != None:
+            validation_record_button = None
+        if validation_record_button != None:
+            #Filter the object by the object id 
             object_instance = Objects.objects.get(object_id = request.POST['object'])
+            #Filter which transaction will be used by the trasaction id
             transaction_instance = Transactions.objects.get(transaction_id = request.POST['transaction'])
+            #Go back the stock with the information of transaction
             object_instance.stock = transaction_instance.stock_before
+            #Give type transaction "Go_Back"
             type_instance = Type_Transaction.objects.get(type_id = 5)
+            #Create instance into record about undone change
             Transactions.objects.create(object_id = object_instance,user_id = request.user,type_transaction = type_instance, stock_before = transaction_instance.stock_after, stock_after = transaction_instance.stock_before  )
+            #if the object was delete at the space work, undo this change
             if object_instance.show_object == 0:
                 object_instance.show_object = 1
+            #save object with all changes
             object_instance.save()
             return redirect('main')
         else:
-            object_instance_before = Objects.objects.get(object_id = id)
-            stock_before = object_instance_before.stock
-            form = ModifieObject(request.POST,instance=object_instance_before)
+            try: 
+                validation_delete_button = str(request.POST['show_object'])
+            except:
+                validation_delete_button = True
+            object_instance = Objects.objects.get(object_id = id)
+            if validation_delete_button == 'delete_object':
+                object_instance.show_object = False
+                object_instance.save()
+                type_instance = Type_Transaction.objects.get(type_id = 6)
+                Transactions.objects.create(object_id = object_instance,user_id = request.user,type_transaction = type_instance,stock_before = request.POST['stock'],stock_after = request.POST['stock'])
+                return redirect('main')
+            #save stock of this instance
+            stock_before = object_instance.stock
+            #Modifie a object that new data
+            form = ModifieObject(request.POST,request.FILES,instance=object_instance)
+            form.save() 
+            #validate 
             object_instance_after = Objects.objects.get(object_id = id)
-            form.save()
-            equal_name = (object_instance_before.name == object_instance_after.name)
-            equal_stock = (object_instance_before.stock == object_instance_after.stock)
-            equal_description = (object_instance_before.description == object_instance_after.description)
-            equal_image = (object_instance_before.image == object_instance_after.image)
-            equal_show_object = (object_instance_before.show_object == object_instance_after.show_object)
+            #make all the comparisons to see if there was any change.
+            equal_name = (str(request.POST['name']) == object_instance_after.name)
+            equal_stock = (int(request.POST['stock']) == stock_before)
+            equal_description = (str(request.POST['description']) == object_instance_after.description)
+            if request.POST['image'] == '':
+                equal_image = True
+            else:
+                equal_image = (f'object_images/{str(request.POST['image'])}' == object_instance_after.image)
+            try:
+                if str(request.POST['show_object']) == 'on':
+                    show_object_before = True
+                else:
+                    show_object_before = False
+                equal_show_object = (show_object_before == object_instance_after.show_object)
+            except:
+                equal_show_object = False
             validation = equal_name and equal_stock and equal_description and equal_image and equal_show_object
+            #if validation is equal a true, the user don't change anything
             if validation == True:
                 return render(request,'objects.html',{
-                'form' : form,
                 'object' : object_instance_after,
-                'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!.',
+                'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!',
                 'change_invalid' : 'No se ha realizado ningún cambio, realiza almenos un cambio.',
                 'record_object' : record_object[::-1]
             })
             else:
+                #Select which that the type of transaction
                 if equal_show_object == False:
                     type_instance = Type_Transaction.objects.get(type_id = 6)
-                elif  (object_instance_before.name != object_instance_after.name) or (object_instance_before.description != object_instance_after.description) or (object_instance_before.image != object_instance_after.image):
+                elif  (not equal_name) or (not equal_description) or (not equal_image):
                     type_instance = Type_Transaction.objects.get(type_id = 4)
                 elif stock_before < int(request.POST['stock']):
                     type_instance = Type_Transaction.objects.get(type_id = 1)
                 elif  stock_before > int(request.POST['stock']):
                     type_instance = Type_Transaction.objects.get(type_id = 2)
-                Transactions.objects.create(object_id = object_instance_before,user_id = request.user,type_transaction = type_instance,stock_before = stock_before,stock_after = request.POST['stock'])
+                #Create transacion with form data
+                Transactions.objects.create(object_id = object_instance_after,user_id = request.user,type_transaction = type_instance,stock_before = stock_before,stock_after = request.POST['stock'])
                 return redirect('main') 
 def record(request):
     if request.method =='GET':

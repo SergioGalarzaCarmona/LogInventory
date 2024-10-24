@@ -57,8 +57,13 @@ def log_in(request,code):
     else:
         #If the caracter "@" is in "user", It's a email
         if '@' in request.POST['user']:
-            #Create a user intance using email
-            user_instance = User.objects.get(email = request.POST['user'])
+            try:
+                #Create a user intance using email
+                user_instance = User.objects.get(email = request.POST['user'])
+            except:
+                return render(request,'log_in.html',{
+                'error' : 'El usuario o la contraseña son incorrectas'
+            })
         else:
             #Create a user instance using name
             user_instance = request.POST['user']

@@ -1,6 +1,4 @@
-from django.forms import ModelForm,Form
-
-from django.contrib.auth.models import User
+from django.forms import ModelForm
 from Objects.models import Objects
 
 
