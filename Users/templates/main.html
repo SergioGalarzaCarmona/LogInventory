@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%static '/styles/mainStyles.css'%}">
+    <link rel="stylesheet" href="{%static '/styles/normalize.css'%}">
     <title>Espacio de trabajo</title>
     <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
     <meta name="description" content="Espacio de trbajo LOG INVENTORY">
@@ -40,7 +41,7 @@
                             {% csrf_token %}
                             <p class="create-form__exception">{{name_invalid}}</p>
                             <p class="create-form__exception">{{number_invalid}}</p>
-                            <p class="create-form__exception">{{is_not_valid}}</p>
+                            <p class="create-form__exception">{{is_not_valid}}</p> 
                             {{create_or_modifie_form}}
                             <input type="submit" value="Crear objeto" class="submit">
                             <label for="create" class="close">x</label>

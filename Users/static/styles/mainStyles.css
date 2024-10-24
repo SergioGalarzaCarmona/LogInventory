@@ -277,7 +277,7 @@ span {
     background-color: #fff;
     background-image: radial-gradient(#18233f44, #18233f11);
     width: 50vw;
-    height: 72.5vh;
+    height: 77.5vh;
     left: 25vw;
     overflow: hidden;
 }
@@ -285,11 +285,18 @@ span {
 .create_or_modifie_form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-row: 1fr 1fr 1fr;
+    grid-row: 1fr 1fr 1fr .2fr;
     grid-template-areas: 
     "name name stock"
     "description description description"
-    "image image submit";
+    "image image submit"
+    "exception space space";
+}
+
+.create-form__exception {
+    grid-area: exception;
+    color: #f00;
+    
 }
 
 input {
