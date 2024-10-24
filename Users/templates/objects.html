@@ -39,7 +39,7 @@
                 <img src="media/{{object.image}}" alt="object-image" class="object__img">
             </div>
         </label>
-        <label class="image__delete-button" for="image-clear_id" onclick="triggerSubmit()">
+        <label class="image__delete-button" for="image-clear_id">
             <img src="../static/images/basura.webp" alt="delete-image">
         </label>
         <div class="object__description">
@@ -66,10 +66,10 @@
                     <input class="object__image-change" type="file" name="image" accept="image/*" id="id_image">
                 </div>
                 <div>
-                    <input class="object__delete" type="checkbox" name="show_object" id="id_show_object" checked="">
+                    <input class="object__delete" type="checkbox" name="show_object" id="id_show_object" checked value="delete_object">
                 </div>
                 <input class="update" id="update" type="submit" value="Actualizar">  
-                <label class="object__delete-button" for="id_show_object">Borrar Objeto</label> 
+                <label class="object__delete-button" for="id_show_object" onclick="triggerSubmit()">Borrar Objeto</label> 
             </form>
         </div>
         <div class="object__record">
@@ -93,7 +93,7 @@
                 <form class="go-back" method="POST">
                     {% csrf_token %}
                     <input class="hidden" type="number" hidden name="transaction" value="{{instance.transaction_id}}">
-                    <input class="hidden" type="number" hidden name=object value="{{instance.object_id.object_id}}">
+                    <input class="hidden" type="number" hidden name="object" value="{{instance.object_id.object_id}}">
                     {% if instance.type_transaction_id == 4 and instance.stock_before == instance.stock_after %}
                     <input class="go-back__button" type="submit" value="Retroceder cambios" disabled>
                     {% elif instance.type_transaction_id == 5 or instance.type_transaction_id == 3%}
