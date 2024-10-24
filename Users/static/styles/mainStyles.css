@@ -147,7 +147,7 @@ label > p {
 
 .log_out {
     position: relative;
-    left: 9vw;
+    left: 7.5vw;
     display: flex;
     flex-direction: row;
     align-items: center;
