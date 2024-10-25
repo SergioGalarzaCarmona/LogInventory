@@ -48,12 +48,7 @@ def sign_up(request):
 def log_in(request,code):
     #Filter method
     if request.method == 'GET':
-        if code == 0: 
-            return render(request,'log_in.html')
-        else: 
-            return render(request,'log_in.html',{
-                'error' : 'Primero inicia sesion para poder recuperar la contraseña.'
-            })
+        return render(request,'log_in.html')
     else:
         #If the caracter "@" is in "user", It's an email
         if '@' in request.POST['user']:
@@ -75,10 +70,7 @@ def log_in(request,code):
         })
         else:
             login(request,user)
-            if code == 0:
-                return redirect('main')
-            else:
-                return redirect('last_password')
+            return redirect('main')
 #Log out
 def log_out(request):
     logout(request)
@@ -90,11 +82,7 @@ def home(request):
 #Send email for reset password
 def mail_sender(request):
     if request.method == 'GET':
-        if str(request.user) == "AnonymousUser":
-            ruta = reverse(viewname='log_in',args=[1])
-            return redirect(ruta)
-        else:
-            return render(request,'last_password.html')
+        return render(request,'lost_password.html')
     else:
             #Passkey for reset password
             #This passkey is for validate email sending
@@ -132,7 +120,7 @@ def mail_sender(request):
             with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                 smtp.login(email_sender,app_password)
                 smtp.sendmail(email_sender,request.POST['email'],em.as_string())
-            return render(request,'last_password.html')
+            return render(request,'lost_password.html')
         
 def change_password(request,passkey_config,passkey_link):
     user,passkey = passkey_config.split(',')
