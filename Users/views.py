@@ -84,43 +84,43 @@ def mail_sender(request):
     if request.method == 'GET':
         return render(request,'lost_password.html')
     else:
-            #Passkey for reset password
-            #This passkey is for validate email sending
-            caracters = [
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-            'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's',
-            't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3',
-            '4', '5', '6', '7', '8', '9'
-            ]
-            passkey = ''
-            for x in range(25):
-                indice = randint(0,35)
-                caracter = caracters[indice]
-                passkey += caracter
-            passkey_config = str(request.user) + ',' + str(passkey)
-            #Load the enviroment variables
-            load_dotenv()
-            app_password = os.getenv('APP_PASSWORD')
-            #Email adress that is going to send the email
-            email_sender = 'Log.Inventory2406@gmail.com'
-            #Subject and body of the email
-            subject = 'Email para cambiar la contraseña.'
-            body = f'''En este email se adjunta un link para restablecer tu contraseña.
-            NO COMPARTAS ESTE LINK CON NADIE.
-            Si has recibido este mensaje y no lo solicitaste, ps preocupese pq no tenemos forma de cambiar la contraseña de otra manera. 
-            http://127.0.0.1:8000/change%20password/{passkey_config}/{passkey}
-            '''
-            #Config EmailMessage
-            em = EmailMessage()
-            em['From'] = email_sender
-            em['To'] = request.POST['email']
-            em['Subject'] = subject
-            em.set_content(body)
-            context = ssl.create_default_context()
-            with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
-                smtp.login(email_sender,app_password)
-                smtp.sendmail(email_sender,request.POST['email'],em.as_string())
-            return render(request,'lost_password.html')
+        #Passkey for reset password
+        #This passkey is for validate email sending
+        caracters = [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+        'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's',
+        't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3',
+        '4', '5', '6', '7', '8', '9'
+        ]
+        passkey = ''
+        for x in range(25):
+            indice = randint(0,35)
+            caracter = caracters[indice]
+            passkey += caracter
+        passkey_config = str(request.user) + ',' + str(passkey)
+        #Load the enviroment variables
+        load_dotenv()
+        app_password = os.getenv('APP_PASSWORD')
+        #Email adress that is going to send the email
+        email_sender = 'Log.Inventory2406@gmail.com'
+        #Subject and body of the email
+        subject = 'Email para cambiar la contraseña.'
+        body = f'''En este email se adjunta un link para restablecer tu contraseña.
+        NO COMPARTAS ESTE LINK CON NADIE.
+        Si has recibido este mensaje y no lo solicitaste, ps preocupese pq no tenemos forma de cambiar la contraseña de otra manera. 
+        http://127.0.0.1:8000/change%20password/{passkey_config}/{passkey}
+        '''
+        #Config EmailMessage
+        em = EmailMessage()
+        em['From'] = email_sender
+        em['To'] = request.POST['email']
+        em['Subject'] = subject
+        em.set_content(body)
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+            smtp.login(email_sender,app_password)
+            smtp.sendmail(email_sender,request.POST['email'],em.as_string())
+        return render(request,'lost_password.html')
         
 def change_password(request,passkey_config,passkey_link):
     user,passkey = passkey_config.split(',')
