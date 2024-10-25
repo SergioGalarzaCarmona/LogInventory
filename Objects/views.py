@@ -3,7 +3,7 @@ from Objects.forms import ObjectForm,ModifieObject
 from Objects.models import Objects,Transactions,Type_Transaction
 from django.contrib.auth.models import AnonymousUser
 
-#This view show space work, here show all objects
+#This view shows space work, and shows all objects
 def main(request):
     
     #Filter objects by user
@@ -16,7 +16,7 @@ def main(request):
         })
     else:
 
-        #Craate a instance to the model "Objects" with the form
+        #Craate an instance of the model "Objects" with the form
         form = ObjectForm(request.POST,request.FILES)
         #Check that the name of objects doesn't exist
         instance_valid = Objects.objects.filter(name = request.POST['name'], user_id = request.user,show_object = True)
