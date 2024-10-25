@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static '/styles/objectStyles.css'%}">
     <link rel="stylesheet" href="{%static '/styles/normalize.css'%}">
+    <link rel="stylesheet" href="{%static '/styles/objectStyles.css'%}">
     <title>Objetos</title>
     <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
     <meta name="description" content="Objetos LOG INVENTORY">
@@ -47,7 +47,7 @@
         <div class="object__description">
             <h1>{{object.name}}</h1>
             <form method="POST" id="object-form">
-                {{change_invalid}}
+                <p class="form__exception">{{change_invalid}}</p>
                 {{message}}
                 {% csrf_token %}
                 <div>

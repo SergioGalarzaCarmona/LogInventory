@@ -210,6 +210,12 @@ h1 {
     box-shadow: 0px 0px 40px #0006;
 }
 
+.form__exception {
+    position: absolute;
+    color: #f00;
+    top: 82vh;
+}
+
 div:has(textarea) {
     display: flex;
     flex-direction: column;
