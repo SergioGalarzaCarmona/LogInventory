@@ -41,11 +41,11 @@
             </div>
         </label>
         <label class="image__delete-button" for="image-clear_id" >
-            <img src="../static/images/basura.webp" alt="delete-image">
+            <img src="../static/images/basura.webp" alt="delete-image" >
         </label>
         <div class="object__description">
             <h1>{{object.name}}</h1>
-            <form method="POST" id="object-form">
+            <form method="POST" id="object-form" enctype="multipart/form-data">
                 {{change_invalid}}
                 {{message}}
                 {% csrf_token %}
@@ -62,13 +62,12 @@
                     <textarea class="description" name="description" cols="40" rows="10" maxlength="500" required="" id="id_description">{{object.description}}</textarea>
                 </div>
                 <div class="image-options">
-                    <input type="checkbox" name="image-clear" id="image-clear_id">
-                    <label for="image-clear_id">Borrar Imagen</label>
+                    <input type="checkbox" name="image_clear" id="image-clear_id" onclick=triggerSubmit()>
+                    <label for="image-clear_id" >Borrar Imagen</label>
                     <input class="object__image-change" type="file" name="image" accept="image/*" id="id_image">
                 </div>
                 <div>
                     <input class="object__delete" type="checkbox" name="show_object" id="id_show_object" checked onclick=triggerSubmit()>
-                    <input class="hidden" type="text" hidden name="support" value="delete_object">
                 </div>
                 <input class="update" id="update" type="submit" value="Actualizar">  
                 <label class="object__delete-button" for="id_show_object">Borrar Objeto</label> 
