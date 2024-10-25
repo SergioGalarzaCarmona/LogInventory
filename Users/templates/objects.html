@@ -45,7 +45,7 @@
         </label>
         <div class="object__description">
             <h1>{{object.name}}</h1>
-            <form method="POST" id="object-form">
+            <form method="POST" id="object-form" enctype="multipart/form-data">
                 {{change_invalid}}
                 {{message}}
                 {% csrf_token %}
@@ -68,7 +68,6 @@
                 </div>
                 <div>
                     <input class="object__delete" type="checkbox" name="show_object" id="id_show_object" checked onclick=triggerSubmit()>
-                    <input class="hidden" type="text" hidden name="support" value="delete_object">
                 </div>
                 <input class="update" id="update" type="submit" value="Actualizar">  
                 <label class="object__delete-button" for="id_show_object">Borrar Objeto</label> 
@@ -84,6 +83,8 @@
                 <p class="transaction-type">Tipo de transaction: Adición</p>
                 {% elif instance.type_transaction_id == 2 %}
                 <p class="transaction-type">Tipo de transaction: Sustraccion</p>
+                {% elif instance.type_transaction_id == 3 %}
+                <p class="transaction-type">Tipo de transaction: Creación</p>
                 {% elif instance.type_transaction_id == 4 %}
                 <p class="transaction-type">Tipo de transaction: Remodelación de objeto</p>
                 {% elif instance.type_transaction_id == 5 %}
