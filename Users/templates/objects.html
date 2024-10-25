@@ -41,7 +41,7 @@
             </div>
         </label>
         <label class="image__delete-button" for="image-clear_id" >
-            <img src="../static/images/basura.webp" alt="delete-image">
+            <img src="../static/images/basura.webp" alt="delete-image" >
         </label>
         <div class="object__description">
             <h1>{{object.name}}</h1>
@@ -62,8 +62,8 @@
                     <textarea class="description" name="description" cols="40" rows="10" maxlength="500" required="" id="id_description">{{object.description}}</textarea>
                 </div>
                 <div class="image-options">
-                    <input type="checkbox" name="image-clear" id="image-clear_id">
-                    <label for="image-clear_id">Borrar Imagen</label>
+                    <input type="checkbox" name="image_clear" id="image-clear_id" onclick=triggerSubmit()>
+                    <label for="image-clear_id" >Borrar Imagen</label>
                     <input class="object__image-change" type="file" name="image" accept="image/*" id="id_image">
                 </div>
                 <div>
