@@ -36,7 +36,7 @@ h1 {
 
 .sign_up {
     width: 45vw;
-    height: 70vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,6 +55,10 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-items: center;
+}
+
+.exception {
+    color: #f00;
 }
 
 input:focus{
@@ -105,19 +109,28 @@ input[type="submit"]:hover {
     display: none;
 }
 
-.home__link > div {
+.home__link {
+    width: fit-content;
+    display: flex;
     position: absolute;
-    left: 60px;
-    top: 40px;
-    font-size: .9rem;
-    color: #000;
+    top: 2vh;
+    left: 2vw;
+}
+
+.home__link:hover {
+    filter: drop-shadow(0 4px 8px #48e);
 }
 
 .home__link-img {
     height: 50px;
-    position: absolute;
-    left: 10px;
-    top: 10px;
+}
+
+.home__link > div {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: .9rem;
+    color: #000;
 }
 
 div a {

@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat";
+    background-color: #fff;
+    color: #070b1add;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+body, div, ul, nav, header, footer, a, li, label {
+    margin: 0;
+    padding: 0;
+}
+
+/*---HEADER---*/
+.space-work {
+    position: absolute;
+    top: 3vh;
+    left: 2.5vw;
+    transition: filter .2s;
+}
+
+.space-work__link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    color: inherit;
+}
+
+.space-work:hover {
+    filter: drop-shadow(0 4px 8px #000);
+}
+
+.space-work__link > img {
+    height: 3vh;
+}
+
+
+/*---MAIN---*/
+main {
+    position: relative;
+    top: 5vh;
+    display: grid;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3.6rem;
+    margin-top: 0;
+}
+
+.transaction {
+    width: 95vw;
+    height: 10vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr  1fr 1fr;
+    grid-template-rows: 100%;
+    grid-template-areas: 
+    "object type type before after date date button";
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px #fff solid;
+    background-color: #48e;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 3vh;
+    padding: 0 2.5vw;
+}
+
+.transaction > p, .transaction > input, .transaction > h2 {
+    place-self: center;
+}
+
+.object-name {
+    grid-area: object;
+    text-overflow: hidden;
+    white-space: nowrap;
+}
+
+.transaction-type {
+    grid-area: type;
+}
+
+.stock-before {
+    grid-area: before;
+}
+
+.stock-after {
+    grid-area: after;
+}
+
+.time {
+    grid-area: date;
+}
+
+.go-back__button {
+    grid-area: button;
+    font-family: "Montserrat";
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    transition: background-color .2s, color .2s;
+}
+
+.go-back__button:hover {
+    cursor: pointer;
+    background-color: #a18262;
+    color: #fff;
+    box-shadow: 0 4px 8px #dcd9df, 0 6px 20px #fff;
+}
+
+.go-back__button-disabled {
+    opacity: .5;
+    grid-area: button;
+    font-family: "Montserrat";
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    transition: background-color .2s, color .2s;
+}

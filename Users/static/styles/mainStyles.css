@@ -7,7 +7,6 @@ body{
     font-family: "Montserrat";
     background-color: #fff;
     color: #070b1add;
-    height: 100vh;
     overflow-x: hidden;
 }
 
@@ -40,11 +39,52 @@ h1 {
 }
 
 .header__logo {
-    height: 12vh;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     border-radius: 0px 8px 8px 0px;
 }
 
+.header__tools {
+    width: 77.5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr;
+    grid-template-rows: 100%;
+    grid-template-areas: 
+    "record create log-out";
+}
+
+.header__tools-record {
+    grid-area: record;
+    display: grid;
+    place-content: center;
+    list-style: none;
+}
+
+.header__tools-record_link {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    transition: filter .2s;
+}
+
+.header__tools-record_link:hover {
+    filter: drop-shadow(0 0 6px #48e);
+}
+
+.header__tools-record_link > img {
+    height: 8vh;
+}
+
+.header__tools-record_link > p {
+    color: #48e;
+    margin: 0;
+    text-decoration: inherit;
+    align-self: flex-end;
+}
+
 .header__tools-create {
+    grid-area: create;
     display: grid;
     place-content: center;
     height: 100%;
@@ -55,23 +95,59 @@ h1 {
     height: 8vh;
 }
 
-.create-button {
+.create-overlay {
     display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 55;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+    opacity: 0.5;
 }
 
-.más {
-    height: 8vh;
+.create > label {
+    display: flex;
+    flex-direction: row;
+    color: #48e;
+    align-items: center;
     transition: filter .2s;
 }
 
-.más:hover {
+.create > label:hover {
     filter: drop-shadow(0 0 6px #48e);
     cursor: pointer;  
 }
 
+label > p {
+    margin: 0;
+    align-self: flex-end;
+    color: inherit;
+}
+
+.create-button {
+    display: none;
+}
+
+.create-button:checked ~ .create-overlay {
+    display: block;
+}
+
+.más {
+    height: 8vh;
+}
+
+.header__tools-log_out {
+    grid-area: log-out;
+    display: flex;
+    justify-content: end;
+    list-style: none;
+}
+
 .log_out {
-    position: absolute;
-    right: 2vw;
+    position: relative;
+    left: 7.5vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -149,7 +225,7 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: #0006;
-}
+} 
 
 h3, p {
     position: relative;
@@ -197,12 +273,11 @@ span {
     position: absolute;
     z-index: 60;
     padding: 30px;
-    border: solid 1px #000;
     border-radius: 5px;
     background-color: #fff;
     background-image: radial-gradient(#18233f44, #18233f11);
     width: 50vw;
-    height: 72.5vh;
+    height: 77.5vh;
     left: 25vw;
     overflow: hidden;
 }
@@ -210,11 +285,18 @@ span {
 .create_or_modifie_form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-row: 1fr 1fr 1fr;
+    grid-row: 1fr 1fr 1fr .2fr;
     grid-template-areas: 
     "name name stock"
     "description description description"
-    "image image submit";
+    "image image submit"
+    "exception space space";
+}
+
+.create-form__exception {
+    grid-area: exception;
+    color: #f00;
+    
 }
 
 input {

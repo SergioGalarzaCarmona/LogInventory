@@ -48,13 +48,14 @@ h1, .contact, .info {
     display: flex;
     justify-self: start;
     height: 12vh;
+    width: 10vw;
     width: 16%;
 }
 
 .header__logo {
-    position: absolute;
-    left: 0;
     height: 100%;
+    width: 100%;
+    object-fit: cover;
     border-radius: 0px 8px 8px 0px;
 }
 
@@ -233,6 +234,10 @@ main > p {
 .division {
     height: 25vh;
     background: linear-gradient(#0006, #fff);
+}
+
+.division__text {
+    text-align: justify;
 }
 
 /*---ASIDE---*/
