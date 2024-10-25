@@ -45,7 +45,7 @@ def sign_up(request):
                 })
             
             
-def log_in(request,code):
+def log_in(request):
     #Filter method
     if request.method == 'GET':
         return render(request,'log_in.html')
