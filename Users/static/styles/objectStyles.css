@@ -128,6 +128,7 @@ body, div, ul, nav, header, footer, a, li, label {
 
 /*---MAIN---*/
 
+/*--OBJECT FORM--*/
 main {
     margin-top: 4vh;
     width: 100vw;
@@ -316,6 +317,8 @@ input{
     background-color: #fff;
     color: #d00;
 }
+
+/*--OBJECT RECORD--*/
 
 .object__record {
     width: 100vw;
