@@ -11,9 +11,10 @@ def main(request):
             #Filter objects by user
             object_instance = Objects.objects.filter(user_id = request.user)
             return render(request,'main.html',{
+                'create_form' : ObjectForm,
                 'objects' : object_instance,
                 'show' : False
-            })
+                })
         else:
             return render(request,'error_403.html')
     else:
@@ -26,7 +27,7 @@ def main(request):
         #Verifie that the object stock isn't negative
         if int(request.POST['stock']) < 0:
             return render(request,'main.html',{
-                    'create_or_modifie_form' : ObjectForm,
+                    'create_form' : ObjectForm,
                     'objects' : object_instance,          
                     'number_invalid' : 'El stock no puede ser negativo.',
                     'show' : True
@@ -49,7 +50,7 @@ def main(request):
                 #Filter all items that the user has created
                 object_instance = Objects.objects.filter(user_id = request.user)
                 return render(request,'main.html',{
-                    'create_or_modifie_form' : ObjectForm,
+                    'create_form' : ObjectForm,
                     'objects' : object_instance,       
                     'is_not_valid' : 'Algunos de los datos ingresados no son válidos',
                     'show' : True
@@ -57,7 +58,7 @@ def main(request):
         #If instance_valid has some data, is because the name already exists
         else: 
             return render(request,'main.html',{
-                    'create_or_modifie_form' : ObjectForm,
+                    'create_form' : ObjectForm,
                     'objects' : object_instance,
                     'name_invalid' : 'El nombre ya está en uso, ingrese otro por favor',
                     'show' : True
