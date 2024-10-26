@@ -25,25 +25,33 @@ def sign_up(request):
         return render(request,'sign_up.html',{
     })
     else:
-        #Checking passwords matching 
-        if  request.POST['password1'] == request.POST['password2']:
-            try:
-                #Create user, save, and login new user
-                user = User.objects.create_user(username=request.POST['username'],password=request.POST['password1'],email=request.POST['email_adress'])
-                user.save()
-                login(request,user)
-                return redirect('main')
-            #If the name already exists print "error"
-            except IntegrityError:
+        users = User.objects.filter(email = request.POST['email_adress'],is_superuser = 0)
+        
+        if len(users) == 0:
+            #Checking passwords matching 
+            if  request.POST['password1'] == request.POST['password2']:
+                try:
+                    #Create user, save, and login new user
+                    user = User.objects.create_user(username=request.POST['username'],password=request.POST['password1'],email=request.POST['email_adress'],is_superuser = 0)
+                    user.save()
+                    login(request,user)
+                    return redirect('main')
+                #If the name already exists print "error"
+                except IntegrityError:
+                    return render(request,'sign_up.html',{
+                    'error' : "El nombre de usuario ya existe."
+                    })
+            else:
+                #If the password doesn't match print "error"
                 return render(request,'sign_up.html',{
-                'error' : "El nombre de usuario ya existe."
-                })
+                    'error' : "Las contraseñas no coinciden."
+                    })
+                
         else:
-            #If the password doesn't match print "error"
             return render(request,'sign_up.html',{
-                'error' : "Las contraseñas no coinciden."
-                })
-            
+                'error' : "El email ingresado ya pertenece a una cuenta"
+                }) 
+                
             
 def log_in(request):
     #Filter method
@@ -54,7 +62,7 @@ def log_in(request):
         if '@' in request.POST['user']:
             try:
                 #Create an user intance using email
-                user_instance = User.objects.get(email = request.POST['user'])
+                user_instance = User.objects.get(email = request.POST['user'],is_superuser = 0)
             except:
                 return render(request,'log_in.html',{
                 'error' : 'El usuario o la contraseña son incorrectas'
@@ -84,9 +92,11 @@ def mail_sender(request):
     if request.method == 'GET':
         return render(request,'lost_password.html')
     else:
-        user = User.objects.get(email = request.POST['email'])
-        if len(user) == 1:
-             #Passkey for reset password
+        users = User.objects.filter(email = request.POST['email'],is_superuser = 0)
+        if len(users) == 1:
+            
+            user = users[0]
+            #Passkey for reset password
             #This passkey is for validate email sending
             caracters = [
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
@@ -130,26 +140,20 @@ def mail_sender(request):
         
        
 def change_password(request,passkey_config,passkey_link):
-    user,passkey = passkey_config.split(',')
-    
+    user_link,passkey = passkey_config.split(',')
+    user = User.objects.get(username = user_link)
     if request.method == 'GET':
-        if str(request.user) == user:
             if passkey == passkey_link:
                 return render(request,'change_password.html')
             else:
                 return render(request,'error_passkey.html',{
-                    'error' : 'Eror de passkey'
+                    'error' : 'Error de passkey'
                 })
-        else:
-            return render(request,'error_passkey.html',{
-                'error' : 'Error de user'
-            })
     else:
         if  request.POST['password1'] == request.POST['password2']: 
-            user = get_user(request)
             user.set_password(str(request.POST['password1']))
             user.save()
-            return render(request,'change_password.html')
+            return redirect('log_in')
         else: 
             return render(request,'change_password.html',{
                 'error' : 'Las contraseñas no coinciden.'
