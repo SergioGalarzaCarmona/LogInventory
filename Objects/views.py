@@ -65,11 +65,21 @@ def main(request):
             
             
 def object_instance(request,id):
+    
+    #If object doesn't exist raise error 404
+    try:
+        #Filter obeject by this id
+        object_instance = Objects.objects.get(object_id = id)
+    except:
+        return render(request,'error_404.html')
+    
+    
     #Filter record by object id 
     record_object = Transactions.objects.filter(object_id = id)
-    #Filter obeject by this id
-    object_instance = Objects.objects.get(object_id = id)
+    
+    
     if request.method == 'GET':
+        #If user is Anonymoususer raise error 403
         if str(request.user) != 'AnonymousUser':
             return render(request,'objects.html',{
                 'object' : object_instance,
@@ -78,6 +88,7 @@ def object_instance(request,id):
             })
         else:
             return render(request,'error_403.html')
+        
     else:
         #Validate if the input "image_clear" has some value, the varibale doesn't raise an exception
         try:
