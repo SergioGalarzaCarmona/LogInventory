@@ -1,13 +1,28 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static '/styles/normalize.css'%}">
+    <link rel="stylesheet" href="{%static '/styles/error403Styles.css'%}">
     <title>Forbidden</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="Error 403" content="Error 403">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
-    <h1>
-        Usuario no encontrado
-    </h1>
+    <div class="error">
+        <h1>
+            403
+        </h1>
+        <div class="typewritter">
+            <p>Error al intentar acceder al área de trabajo, asegurese de haber iniciado sesión.</p>
+        </div>
+    </div>
+    <div class="image__container">
+        <img src="../static/images/Totoro.png" alt="Totoro">
+    </div>
 </body>
 </html>
