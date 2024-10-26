@@ -135,7 +135,7 @@ def mail_sender(request):
             return render(request,'lost_password.html')
         else:
             return render(request,'lost_password.html',{
-                'error' : 'El email ingresado no concuerda con ningun usuario '
+                'error' : 'El email ingresado no concuerda con ningún usuario. '
             })
         
        

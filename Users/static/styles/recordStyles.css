@@ -24,7 +24,7 @@ body, div, ul, nav, header, footer, a, li, label {
     transition: filter .2s;
 }
 
-.space-work__link {
+.space-work__link { 
     text-decoration: none;
     display: flex;
     align-items: center;

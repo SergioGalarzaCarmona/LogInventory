@@ -1,13 +1,28 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not Found</title>
+    <link rel="stylesheet" href="{%static '/styles/normalize.css'%}">
+    <link rel="stylesheet" href="{%static '/styles/error404Styles.css'%}">
+    <title>Error 404</title>
+    <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
+    <meta name="description" content="Error 404">
+    <meta name="author" content="LOG INVENTORY">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
-    <h1>
-        Objeto no encontrado
-    </h1>
+    <div class="error">
+        <h1>
+            404
+        </h1>
+        <div class="typewritter">
+            <p>Objeto no encontrado.</p>
+        </div>
+    </div>
+    <div class="image__container">
+        <img src="../static/images/mini-totoros.webp" alt="mini-totoros">
+    </div>
 </body>
 </html>

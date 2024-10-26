@@ -41,7 +41,6 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px 0;
     font-size: 16px;
     border: none;
     background-image: radial-gradient(#18233f44, #18233f11);
@@ -104,6 +103,11 @@ div a {
 
 div a:visited {
     color: #0000FF;
+}
+
+.sign_up__link {
+    position: relative;
+    bottom: 1vh;
 }
 
 .home__link {
