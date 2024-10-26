@@ -214,7 +214,8 @@ h1 {
 .form__exception {
     position: absolute;
     color: #f00;
-    top: 82vh;
+    top: -2vh;
+    left: 2vw;
 }
 
 div:has(textarea) {
