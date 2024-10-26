@@ -2,7 +2,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     height: 100vh;
     font-family: "Montserrat";
     background-color: #18233f;
@@ -11,6 +11,7 @@ body{
 
 .error {
     display: grid;
+    margin-bottom: -10vh;
 }
 
 h1 {
@@ -34,7 +35,7 @@ p {
     font-size: 1.5rem;
     letter-spacing: 3px;
     overflow: hidden;
-    animation: growth 7s both steps(80);
+    animation: growth 3s both steps(21);
     position: relative;
     white-space: nowrap;
 }
@@ -56,7 +57,7 @@ p::before {
 
 .image__container {
     height: 45vh;
-    width: 20vw;
+    width: 40vw;
 }
 
 img {
