@@ -6,16 +6,19 @@ from django.contrib.auth.models import AnonymousUser
 #This view shows space work, and shows all objects
 def main(request):
     
-    #Filter objects by user
-    object_instance = Objects.objects.filter(user_id = request.user)
     if request.method == 'GET':
-        return render(request,'main.html',{
-            'create_or_modifie_form' : ObjectForm,
-            'objects' : object_instance,
-            'show' : False
-        })
+        if str(request.user) != 'AnonymousUser':
+            #Filter objects by user
+            object_instance = Objects.objects.filter(user_id = request.user)
+            return render(request,'main.html',{
+                'objects' : object_instance,
+                'show' : False
+            })
+        else:
+            return render(request,'error_403.html')
     else:
-
+        #Filter objects by user
+        object_instance = Objects.objects.filter(user_id = request.user)
         #Craate an instance of the model "Objects" with the form
         form = ObjectForm(request.POST,request.FILES)
         #Check that the name of objects doesn't exist
@@ -67,11 +70,14 @@ def object_instance(request,id):
     #Filter obeject by this id
     object_instance = Objects.objects.get(object_id = id)
     if request.method == 'GET':
-        return render(request,'objects.html',{
-            'object' : object_instance,
-            'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!',
-            'record_object' : record_object[::-1]
-        })
+        if str(request.user) != 'AnonymousUser':
+            return render(request,'objects.html',{
+                'object' : object_instance,
+                'message' : 'Los cambios hechos en los campos de "nombre","descripción" y "imagen", no podrán ser retrocedidos.¡CUIDADO!',
+                'record_object' : record_object[::-1]
+            })
+        else:
+            return render(request,'error_403.html')
     else:
         #Validate if the input "image_clear" has some value, the varibale doesn't raise an exception
         try:
@@ -208,12 +214,15 @@ def object_instance(request,id):
 
 def record(request):
     if request.method =='GET':
-        #Filter all transactions that the user have has done
-        transactions = Transactions.objects.filter(user_id = request.user)
-        return render(request,'record.html',{
-            #Reverse the list to show the last change at top
-            'record' : transactions[::-1],
-        })
+        if str(request.user) != 'AnonymousUser':
+            #Filter all transactions that the user have has done
+            transactions = Transactions.objects.filter(user_id = request.user)
+            return render(request,'record.html',{
+                #Reverse the list to show the last change at top
+                'record' : transactions[::-1],
+            })
+        else:
+            return render(request,'error_403.html')
     else: 
         #Filter objects instance and transactions instance by their id
         object_instance = Objects.objects.get(object_id = request.POST['object'])
