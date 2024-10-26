@@ -84,8 +84,8 @@ def mail_sender(request):
     if request.method == 'GET':
         return render(request,'lost_password.html')
     else:
-        users = User.objects.filter(email = request.POST['email'])
-        if len(users) == 1:
+        user = User.objects.get(email = request.POST['email'])
+        if len(user) == 1:
              #Passkey for reset password
             #This passkey is for validate email sending
             caracters = [
@@ -99,7 +99,7 @@ def mail_sender(request):
                 indice = randint(0,35)
                 caracter = caracters[indice]
                 passkey += caracter
-            passkey_config = str(request.user) + ',' + str(passkey)
+            passkey_config = str(user) + ',' + str(passkey)
             #Load the enviroment variables
             load_dotenv()
             app_password = os.getenv('APP_PASSWORD')
