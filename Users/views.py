@@ -146,7 +146,7 @@ def change_password(request,passkey_config,passkey_link):
             if passkey == passkey_link:
                 return render(request,'change_password.html')
             else:
-                return render(request,'error_passkey.html',{
+                return render(request,'error_400.html',{
                     'error' : 'Error de passkey'
                 })
     else:
