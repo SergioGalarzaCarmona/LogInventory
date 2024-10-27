@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login,logout,authenticate,get_user
 from random import randint
+from django.middleware.csrf import _add_new_csrf_cookie
 
 #Send email
 import os
@@ -89,6 +90,7 @@ def home(request):
 
 #Send email for reset password
 def mail_sender(request):
+    _add_new_csrf_cookie(request)
     if request.method == 'GET':
         return render(request,'lost_password.html')
     else:
@@ -109,7 +111,8 @@ def mail_sender(request):
                 indice = randint(0,35)
                 caracter = caracters[indice]
                 passkey += caracter
-            passkey_config = str(user) + ',' + str(passkey)
+            passkey_config = f'\{str(user)}\{str(passkey)}'
+           
             #Load the enviroment variables
             load_dotenv()
             app_password = os.getenv('APP_PASSWORD')
@@ -117,10 +120,12 @@ def mail_sender(request):
             email_sender = 'Log.Inventory2406@gmail.com'
             #Subject and body of the email
             subject = 'Email para cambiar la contraseña.'
-            body = f'''En este email se adjunta un link para restablecer tu contraseña.
+            body = f'''Cordial saludo:
+            
+            Somos el equipo de Log Inventory, hemos recibido tu petición para cambiar la contraseña. En este email se adjunta un link para poder ejecutar dicha acción.
             NO COMPARTAS ESTE LINK CON NADIE.
-            Si has recibido este mensaje y no lo solicitaste, ps preocupese pq no tenemos forma de cambiar la contraseña de otra manera. 
-            http://127.0.0.1:8000/change%20password/{passkey_config}/{passkey}
+            Si has recibido este mensaje y no lo solicitaste, le recomendamos cambiar la contraseña de su correo por su seguridad. 
+            http://127.0.0.1:8000/change%20password/{passkey}
             '''
             #Config EmailMessage
             em = EmailMessage()
@@ -140,6 +145,7 @@ def mail_sender(request):
         
        
 def change_password(request,passkey_config,passkey_link):
+    
     user_link,passkey = passkey_config.split(',')
     user = User.objects.get(username = user_link)
     if request.method == 'GET':
@@ -150,6 +156,7 @@ def change_password(request,passkey_config,passkey_link):
                     'error' : 'Error de passkey'
                 })
     else:
+        
         if  request.POST['password1'] == request.POST['password2']: 
             user.set_password(str(request.POST['password1']))
             user.save()
