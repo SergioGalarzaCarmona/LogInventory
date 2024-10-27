@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
-# Create your models here.
+
 
 #Creating object "Objects"
 class Objects(models.Model):
@@ -13,9 +13,9 @@ class Objects(models.Model):
     last_change = models.DateTimeField(max_length=50,auto_now_add=True)
     description = models.TextField(max_length=500)
     image = models.ImageField(blank=True,upload_to='object_images/',default='object_images/image.png')
-
-
-
+    
+    def __str__(self):
+        return (self.object_id,self.user_id,self.name,self.show_object,self.stock,self.last_change,self.description,self.image)
 #Creating object "Type_Transactions"
 class Type_Transaction(models.Model):
     type_id = models.IntegerField(primary_key=True,editable=False,unique=True)

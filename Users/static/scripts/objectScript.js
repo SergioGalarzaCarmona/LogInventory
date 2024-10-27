@@ -1,3 +1,4 @@
 function triggerSubmit() {
-    document.getElementById('update').click();
-}
+        document.getElementById('update').click();
+    }
+

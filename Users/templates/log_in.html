@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static '/styles/normalize.css'%}">
     <link rel="stylesheet" href="{%static '/styles/logInStyles.css'%}">
     <title>Log In</title>
     <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
@@ -33,6 +34,7 @@
                     <label for="id_password">Contraseña:</label>
                     <input type="password" name="password" autocomplete="current-password" required="" id="id_password" placeholder="Escribe tu contraseña">
                 </div>
+                <div>¿Olvidaste tu contraseña? <a href="{% url 'lost_password' %}">Haz click aquí</a></div>
                 <input type="submit" value="Iniciar sesión" class="log_in__input input--button">
                 <div class="sign_up__link">¿No tienes una cuenta? <a href="{% url 'sign_up' %}">Crea una!</a></div>
             </form>

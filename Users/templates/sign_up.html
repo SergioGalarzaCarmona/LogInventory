@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static '/styles/signUpStyles.css'%}">
+    <link rel="stylesheet" href="{%static '/styles/normalize.css'%}">
+    <link rel="stylesheet" href="{%static '/styles/signUpStyles.css'%}">   
     <title>Crear cuenta</title>
     <link rel="icon" href="{%static '/images/MiniLogoType.webp'%}" type="image/webp">
     <meta name="description" content="Crear cuenta en LOG INVENTORY">
@@ -31,6 +32,10 @@
                         <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" aria-describedby="id_username_helptext" placeholder="Escribe un nombre de usuario"> 
                     </div>
                     <div>
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" name='email_adress' required id='email' placeholder="Escribe un correo electrónico para asociarlo a tu cuenta">
+                    </div>
+                    <div>
                         <label for="id_password1">Contraseña:</label>
                         <input type="password" name="password1" autocomplete="new-password" required="" aria-describedby="id_password1_helptext" id="id_password1" placeholder="Escribe tu contraseña">
                     </div>
@@ -38,12 +43,8 @@
                         <label for="id_password2">Confirmación de contraseña:</label>
                         <input type="password" name="password2" autocomplete="new-password" required="" aria-describedby="id_password2_helptext" id="id_password2" placeholder="Escribe la misma contresaña que escribió en el anterior campo.">
                     </div>
-                    <div>
-                        <label for="email">Correo electrónico:</label>
-                        <input type="email" name='email_adress' required id='email' placeholder="Escribe un correo electrónico para asociarlo a tu cuenta">
-                    </div>
                     <input type="submit" value="Crear cuenta" class="sign_up__button" >
-                    <div class="sign_up__link">¿Ya tienes una cuenta? <a href="{% url 'log_in' 0 %}">Inicia sesión!</a></div>
+                    <div class="sign_up__link">¿Ya tienes una cuenta? <a href="{% url 'log_in'%}">Inicia sesión!</a></div>
                 </form>
             </div>
         </div>
