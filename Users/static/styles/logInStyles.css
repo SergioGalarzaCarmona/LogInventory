@@ -85,6 +85,7 @@ input {
 
 input[type="submit"] {
     margin: none;
+    margin-bottom: 2vh;
     background-color: #48e;
     color: #fff;
     padding: 4px;

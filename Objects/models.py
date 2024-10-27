@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
-import django.utils.timezone as timezone
 
 #Creating object "Objects"
 class Objects(models.Model):
@@ -27,6 +26,6 @@ class Transactions(models.Model):
     object_id = models.ForeignKey(Objects,on_delete=models.PROTECT,editable=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     type_transaction = models.ForeignKey(Type_Transaction,on_delete=models.CASCADE)
-    date = models.DateTimeField(default=timezone.now())
+    date = models.DateTimeField(default=datetime.today())
     stock_before = models.IntegerField(null=False,blank=False)
     stock_after = models.IntegerField(null=False,blank=False)
