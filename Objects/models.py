@@ -4,7 +4,7 @@ from datetime import datetime
 
 #Creating object "Objects"
 class Objects(models.Model):
-    object_id = models.AutoField(primary_key=True,editable=False,unique=True,auto_created=True)
+    object_id = models.AutoField(primary_key=True,editable=False,unique=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     show_object = models.BooleanField(default=True)
@@ -17,12 +17,12 @@ class Objects(models.Model):
         return (self.object_id,self.user_id,self.name,self.show_object,self.stock,self.last_change,self.description,self.image)
 #Creating object "Type_Transactions"
 class Type_Transaction(models.Model):
-    type_id = models.AutoField(primary_key=True,editable=False,unique=True,auto_created=True)
+    type_id = models.AutoField(primary_key=True,editable=False,unique=True)
     status = models.CharField(max_length=20,null=False,blank=False)
 
 #Creating object "Transactions"
 class Transactions(models.Model):
-    transaction_id = models.AutoField(primary_key=True,editable=False,unique=True,auto_created=True)
+    transaction_id = models.AutoField(primary_key=True,editable=False,unique=True)
     object_id = models.ForeignKey(Objects,on_delete=models.PROTECT,editable=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     type_transaction = models.ForeignKey(Type_Transaction,on_delete=models.CASCADE)
