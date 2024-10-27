@@ -126,7 +126,7 @@ def mail_sender(request):
             Somos el equipo de Log Inventory, hemos recibido tu petición para cambiar la contraseña. En este email se adjunta un link para poder ejecutar dicha acción.
             NO COMPARTAS ESTE LINK CON NADIE.
             Si has recibido este mensaje y no lo solicitaste, le recomendamos cambiar la contraseña de su correo por su seguridad. 
-            http://127.0.0.1:8000/change%20password/{passkey}
+            https://loginventory.onrender.com/change%20password/{passkey}
             '''
             #Config EmailMessage
             em = EmailMessage()
