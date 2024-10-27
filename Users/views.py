@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.contrib.auth import login,logout,authenticate,get_user
+from django.contrib.auth import login,logout,authenticate
 from random import randint
-from django.middleware.csrf import _add_new_csrf_cookie
+from http import cookies
 
 #Send email
 import os
@@ -90,7 +90,6 @@ def home(request):
 
 #Send email for reset password
 def mail_sender(request):
-    _add_new_csrf_cookie(request)
     if request.method == 'GET':
         return render(request,'lost_password.html')
     else:
@@ -111,8 +110,10 @@ def mail_sender(request):
                 indice = randint(0,35)
                 caracter = caracters[indice]
                 passkey += caracter
-            passkey_config = f'\{str(user)}\{str(passkey)}'
-           
+            passkey_config = f'{str(user)}/{str(passkey)}'
+            response = render(request,'lost_password.html')
+            
+            response.set_cookie('passkey_config', passkey_config, max_age=60)  
             #Load the enviroment variables
             load_dotenv()
             app_password = os.getenv('APP_PASSWORD')
@@ -137,26 +138,38 @@ def mail_sender(request):
             with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                 smtp.login(email_sender,app_password)
                 smtp.sendmail(email_sender,request.POST['email'],em.as_string())
-            return render(request,'lost_password.html')
+            return response
         else:
             return render(request,'lost_password.html',{
                 'error' : 'El email ingresado no concuerda con ningún usuario. '
             })
         
        
-def change_password(request,passkey_config,passkey_link):
+def change_password(request,passkey):
     
-    user_link,passkey = passkey_config.split(',')
-    user = User.objects.get(username = user_link)
     if request.method == 'GET':
-            if passkey == passkey_link:
-                return render(request,'change_password.html')
-            else:
-                return render(request,'error_400.html',{
-                    'error' : 'Error de passkey'
-                })
-    else:
         
+        try:
+            config = request.COOKIES['passkey_config']
+            user,passkey_cookie = config.split('/')
+        except:
+            return render(request,'error_400.html',{
+                'error' : 'Error de passkey'
+            })
+        if passkey_cookie== passkey:
+            return render(request,'change_password.html')
+        else:
+            return render(request,'error_400.html',{
+                'error' : 'Error de passkey'
+            })
+    else:
+        try:
+            config = request.COOKIES['passkey_config']
+            user,passkey_cookie = config.split('/')
+        except:
+            return render(request,'error_400.html',{
+                'error' : 'Error de passkey'
+            })
         if  request.POST['password1'] == request.POST['password2']: 
             user.set_password(str(request.POST['password1']))
             user.save()
