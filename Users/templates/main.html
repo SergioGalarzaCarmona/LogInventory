@@ -32,7 +32,7 @@
                     <input type="checkbox" class="create-button" id="create">
                     {% endif %}
                     <label for="create">
-                        <img src="../static/images/más.webp" class="más" alt="create">
+                        <img src="{%static '/images/más.webp'%}" class="más" alt="create">
                         <p>Crear</p>
                     </label> 
                     <div class="create-overlay"></div>
@@ -52,7 +52,7 @@
             <li class="header__tools-log_out">
                 <a href="{%url 'log_out'%}" class="log_out">
                     <div>Cerrar sesión</div>
-                    <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
+                    <img class="log_out__image" src="{%static '/images/log_out.webp'%}" alt="Cerrar sesión">
                 </a>
             </li>
         </ul>

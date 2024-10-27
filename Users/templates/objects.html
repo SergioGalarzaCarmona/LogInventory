@@ -30,7 +30,7 @@
             <li class="log_out">
                 <a href="{%url 'log_out'%}" class="log_out-link">
                     <div>Cerrar sesión</div>
-                    <img class="log_out__image" src="../static/images/log_out.webp" alt="Cerrar sesión">
+                    <img class="log_out__image" src="{%static '/images/log_out.webp'%}" alt="Cerrar sesión">
                 </a>
             </li>
         </ul>
@@ -42,7 +42,7 @@
             </div>
         </label>
         <label class="image__delete-button" for="image-clear_id" >
-            <img src="../static/images/basura.webp" alt="delete-image" >
+            <img src="{%static '/images/basura.webp'%}" alt="delete-image" >
         </label>
         <div class="object__description">
             <h1>{{object.name}}</h1>
