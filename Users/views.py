@@ -151,7 +151,7 @@ def change_password(request,passkey):
         
         try:
             config = request.COOKIES['passkey_config']
-            user,passkey_cookie = config.split('/')
+            username,passkey_cookie = config.split('/')
         except:
             return render(request,'error_400.html',{
                 'error' : 'Error de passkey'
@@ -165,7 +165,8 @@ def change_password(request,passkey):
     else:
         try:
             config = request.COOKIES['passkey_config']
-            user,passkey_cookie = config.split('/')
+            username,passkey_cookie = config.split('/')
+            user = User.objects.get(username = username)
         except:
             return render(request,'error_400.html',{
                 'error' : 'Error de passkey'
