@@ -37,7 +37,7 @@
                     </label> 
                     <div class="create-overlay"></div>
                     <div class="create-form-container">
-                        <form class="create_or_modifie_form" method="POST" enctype="multipart/form-data"> 
+                        <form class="create_or_modifie_form" action="/main/" method="POST" enctype="multipart/form-data"> 
                             {% csrf_token %}
                             <p class="create-form__exception">{{name_invalid}}</p>
                             <p class="create-form__exception">{{number_invalid}}</p>
