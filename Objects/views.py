@@ -8,12 +8,12 @@ number_trasactions = Transactions.objects.all()
 
 type_transactions = Type_Transaction.objects.all()
 if len(type_transactions) == 0:
-    Type_Transaction.objects.create(type_transaction_id = 1,status = 'Add')
-    Type_Transaction.objects.create(type_transaction_id = 2,status = 'Substract')
-    Type_Transaction.objects.create(type_transaction_id = 3,status = 'Create')
-    Type_Transaction.objects.create(type_transaction_id = 4,status = 'Properties')
-    Type_Transaction.objects.create(type_transaction_id = 5,status = 'Go back')
-    Type_Transaction.objects.create(type_transaction_id = 6,status = 'Delete')
+    Type_Transaction.objects.create(status = 'Add')
+    Type_Transaction.objects.create(status = 'Substract')
+    Type_Transaction.objects.create(status = 'Create')
+    Type_Transaction.objects.create(status = 'Properties')
+    Type_Transaction.objects.create(status = 'Go back')
+    Type_Transaction.objects.create(status = 'Delete')
 
 #This view shows space work, and shows all objects
 def main(request):
