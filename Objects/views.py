@@ -11,7 +11,6 @@ number_trasactions = Transactions.objects.all()
 def main(request):
     
     if request.method == 'GET':
-        Type_Transaction.objects.create(type_id = 1,status = 'Add')
         Type_Transaction.objects.create(type_id = 2,status = 'Substract')
         Type_Transaction.objects.create(type_id = 3,status = 'Create')
         Type_Transaction.objects.create(type_id = 4,status = 'Properties')
