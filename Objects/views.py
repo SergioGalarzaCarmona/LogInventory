@@ -12,8 +12,6 @@ def main(request):
     
     if request.method == 'GET':
         
-        
-        transaction = Type_Transaction.objects.all()
         if str(request.user) != 'AnonymousUser':
             #Filter objects by user
             object_instance = Objects.objects.filter(user_id = request.user)
@@ -21,7 +19,6 @@ def main(request):
                 'create_form' : ObjectForm,
                 'objects' : object_instance,
                 'show' : False,
-                'values' : transaction
                 })
         else:
             return render(request,'error_403.html')
