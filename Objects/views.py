@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from Objects.forms import ObjectForm,ModifieObject
 from Objects.models import Objects,Transactions,Type_Transaction
-from django.contrib.auth.models import AnonymousUser
 
 
 number_objects = Objects.objects.all()
@@ -10,6 +9,12 @@ number_trasactions = Transactions.objects.all()
 def main(request):
     
     if request.method == 'GET':
+        Type_Transaction.objects.create(type_transaction_id = 1,status = 'Add')
+        Type_Transaction.objects.create(type_transaction_id = 2,status = 'Substract')
+        Type_Transaction.objects.create(type_transaction_id = 3,status = 'Create')
+        Type_Transaction.objects.create(type_transaction_id = 4,status = 'Properties')
+        Type_Transaction.objects.create(type_transaction_id = 5,status = 'Go back')
+        Type_Transaction.objects.create(type_transaction_id = 6,status = 'Delete')
         if str(request.user) != 'AnonymousUser':
             #Filter objects by user
             object_instance = Objects.objects.filter(user_id = request.user)
