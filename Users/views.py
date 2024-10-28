@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login,logout,authenticate
 from random import randint
-from http import cookies
+from ..Objects.models import Type_Transaction
+
 
 #Send email
 import os
@@ -15,8 +16,14 @@ import smtplib
 
 
 
-
-
+type_transactions = Type_Transaction.objects.all()
+if len(type_transactions) == 0:
+    Type_Transaction.objects.create(type_transaction_id = 1,status = 'Add')
+    Type_Transaction.objects.create(type_transaction_id = 2,status = 'Substract')
+    Type_Transaction.objects.create(type_transaction_id = 3,status = 'Create')
+    Type_Transaction.objects.create(type_transaction_id = 4,status = 'Properties')
+    Type_Transaction.objects.create(type_transaction_id = 5,status = 'Go back')
+    Type_Transaction.objects.create(type_transaction_id = 6,status = 'Delete')
 
 
 def sign_up(request):
