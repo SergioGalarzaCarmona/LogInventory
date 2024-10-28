@@ -24,6 +24,7 @@ def main(request):
         form = ObjectForm(request.POST,request.FILES)
         #Check that the name of objects doesn't exist
         instance_valid = Objects.objects.filter(name = request.POST['name'], user_id = request.user,show_object = True)
+        number_objects = Objects.objects.all()
         #Verifie that the object stock isn't negative
         if int(request.POST['stock']) < 0:
             return render(request,'main.html',{
@@ -39,6 +40,7 @@ def main(request):
                 #Create object
                 post = form.save(commit=False)
                 post.user_id = request.user
+                post.object_id = len(number_objects) + 1
                 post.save()
                 #Create an instance into the record
                 object_instance_list = Objects.objects.filter(name = request.POST['name'])
