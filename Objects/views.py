@@ -19,7 +19,7 @@ if len(type_transactions) == 0:
 def main(request):
     
     if request.method == 'GET':
-
+        print(Type_Transaction.objects.all())
         if str(request.user) != 'AnonymousUser':
             #Filter objects by user
             object_instance = Objects.objects.filter(user_id = request.user)
