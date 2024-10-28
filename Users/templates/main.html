@@ -80,6 +80,11 @@
             {% endfor %}
         </a>
         </section>
+
+        {%for transact in transation  %}
+        <div>
+            {{transact.status}}
+        </div>
     </main>
     <script src="../static/scripts/mainScript.js"></script>
 </body>
