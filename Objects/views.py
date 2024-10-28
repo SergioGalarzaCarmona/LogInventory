@@ -10,11 +10,7 @@ number_trasactions = Transactions.objects.all()
 #This view shows space work, and shows all objects
 def main(request):
     
-    if request.method == 'GET':
-
-        Type_Transaction.objects.create(type_id = 3,status = 'Create')
-
-        
+    if request.method == 'GET':        
         if str(request.user) != 'AnonymousUser':
             #Filter objects by user
             object_instance = Objects.objects.filter(user_id = request.user)
