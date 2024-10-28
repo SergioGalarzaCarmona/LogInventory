@@ -3,6 +3,9 @@ from Objects.forms import ObjectForm,ModifieObject
 from Objects.models import Objects,Transactions,Type_Transaction
 from django.contrib.auth.models import AnonymousUser
 
+
+number_objects = Objects.objects.all()
+number_trasactions = Transactions.objects.all()
 #This view shows space work, and shows all objects
 def main(request):
     
@@ -24,7 +27,7 @@ def main(request):
         form = ObjectForm(request.POST,request.FILES)
         #Check that the name of objects doesn't exist
         instance_valid = Objects.objects.filter(name = request.POST['name'], user_id = request.user,show_object = True)
-        number_objects = Objects.objects.all()
+        
         #Verifie that the object stock isn't negative
         if int(request.POST['stock']) < 0:
             return render(request,'main.html',{
@@ -46,7 +49,7 @@ def main(request):
                 object_instance_list = Objects.objects.filter(name = request.POST['name'])
                 object_instance = object_instance_list[len(object_instance_list) - 1]
                 type_instance = Type_Transaction.objects.get(type_id = 3) 
-                Transactions.objects.create(object_id = object_instance ,user_id = request.user, type_transaction = type_instance,stock_before = 0, stock_after = request.POST['stock'] )
+                Transactions.objects.create(trasaction_id = len(number_trasactions) + 1,object_id = object_instance ,user_id = request.user, type_transaction = type_instance,stock_before = 0, stock_after = request.POST['stock'] )
                 return redirect('main')
             else:
                 #Filter all items that the user has created
@@ -112,7 +115,7 @@ def object_instance(request,id):
             #Set type transaction "Go_Back"
             type_instance = Type_Transaction.objects.get(type_id = 5)
             #Create an instance into record about an undone change
-            Transactions.objects.create(object_id = object_instance,user_id = request.user,type_transaction = type_instance, stock_before = transaction_instance.stock_after, stock_after = transaction_instance.stock_before  )
+            Transactions.objects.create(trasaction_id = len(number_trasactions) + 1,object_id = object_instance,user_id = request.user,type_transaction = type_instance, stock_before = transaction_instance.stock_after, stock_after = transaction_instance.stock_before  )
             #If the object was delete at the space work, undo this change
             if object_instance.show_object == 0:
                 object_instance.show_object = 1
@@ -223,7 +226,7 @@ def object_instance(request,id):
                 elif  stock_before > int(request.POST['stock']):
                     type_instance = Type_Transaction.objects.get(type_id = 2)
                 #Create transacion with form data
-                Transactions.objects.create(object_id = object_instance,user_id = request.user,type_transaction = type_instance,stock_before = stock_before,stock_after = request.POST['stock'])
+                Transactions.objects.create(trasaction_id = len(number_trasactions) + 1,object_id = object_instance,user_id = request.user,type_transaction = type_instance,stock_before = stock_before,stock_after = request.POST['stock'])
                 return redirect('main') 
 
 def record(request):
@@ -249,7 +252,7 @@ def record(request):
         #Type instance for a reversed change
         type_instance = Type_Transaction.objects.get(type_id = 5)
         #Create instance in record
-        Transactions.objects.create(object_id = object_instance,user_id = request.user,type_transaction = type_instance, stock_before = transaction_instance.stock_after, stock_after = transaction_instance.stock_before  )
+        Transactions.objects.create(trasaction_id = len(number_trasactions) + 1,object_id = object_instance,user_id = request.user,type_transaction = type_instance, stock_before = transaction_instance.stock_after, stock_after = transaction_instance.stock_before  )
         #Save all changes into DB
         object_instance.save()
         return redirect('main')
