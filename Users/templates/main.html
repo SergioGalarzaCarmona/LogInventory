@@ -80,12 +80,13 @@
             {% endfor %}
         </a>
         </section>
-
-        {%for transact in transation  %}
         <div class="object">
+        {%for transact in transation  %}
+        
             {{transact.status}}
-        </div>
+        
         {% endfor %}
+        </div>
     </main>
     <script src="../static/scripts/mainScript.js"></script>
 </body>
