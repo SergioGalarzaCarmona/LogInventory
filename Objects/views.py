@@ -13,6 +13,7 @@ def main(request):
     if request.method == 'GET':        
         if str(request.user) != 'AnonymousUser':
             #Filter objects by user
+            Type_Transaction.objects.all()
             object_instance = Objects.objects.filter(user_id = request.user)
             return render(request,'main.html',{
                 'create_form' : ObjectForm,
