@@ -45,6 +45,7 @@ def main(request):
                 post = form.save(commit=False)
                 post.user_id = request.user
                 post.object_id = len(number_objects) + 1
+                post.last_change = 0
                 post.save()
                 #Create an instance into the record
                 object_instance_list = Objects.objects.filter(name = request.POST['name'])
